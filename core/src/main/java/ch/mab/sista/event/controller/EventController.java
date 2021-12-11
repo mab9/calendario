@@ -1,5 +1,6 @@
-package ch.mab.sista.event;
+package ch.mab.sista.event.controller;
 
+import ch.mab.sista.event.EventDto;
 import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -2,7 +2,7 @@ package ch.mab.sista;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import ch.mab.sista.event.EventController;
+import ch.mab.sista.event.controller.EventController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
