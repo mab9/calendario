@@ -19,15 +19,32 @@ public class VakansieController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
-    @PostMapping(value = "json", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody //curl -i -H "Content-Type: application/json"  -d "{\"from\":\"John Doe\",\"to\":\"gardener\"}" -X POST "http://localhost:8080/vakansie/json"
-    public boolean postVakansie(@RequestBody @Validated Vakansie vakansie) {
+    // curl -i -H "Content-Type: application/json"  -d "{\"from\":\"John Doe\",\"to\":\"gardener\"}" -X POST "http://localhost:8080/vakansie/json/1"
+    @PostMapping(value = "json/1", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean postVakansie(@RequestBody @Validated VakansieString vakansie) {
         log.info(vakansie.toString());
         return vakansie.getTo() != null;
     }
 
-    // curl -X POST localhost:8080/vakansie/v2?date=2021.12.15
-    @PostMapping("v2")
+    // curl -i -H "Content-Type: application/json"  -d "{\"from\":\"John Doe\",\"to\":\"gardener\"}" -X POST "http://localhost:8080/vakansie/json/2"
+    @PostMapping(value = "json/2", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean postVakansie(@RequestBody @Validated VakansieRecord vakansie) {
+        log.info(vakansie.toString());
+        return vakansie.to() != null;
+    }
+
+    // curl -i -H "Content-Type: application/json"  -d "{\"from\":\"2020-07-16\",\"to\":\"2020-07-17\"}" -X POST "http://localhost:8080/vakansie/json/3"
+    @PostMapping(value = "json/3", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public boolean postVakansie(@RequestBody @Validated VakansieDate vakansie) {
+        log.info(vakansie.toString());
+        return vakansie.to() != null;
+    }
+
+    // curl -X POST localhost:8080/vakansie?date=2021.12.15
+    @PostMapping
     @ResponseBody
     public boolean dateTime(@RequestParam("date") @DateTimeFormat(pattern = "yyyy.MM.dd") LocalDate date) {
         System.out.println(date);

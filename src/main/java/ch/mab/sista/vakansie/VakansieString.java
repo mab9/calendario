@@ -3,17 +3,18 @@ package ch.mab.sista.vakansie;
 
 import javax.validation.constraints.NotNull;
 
-//public record Vakansie(String from, String to) {
-public class Vakansie {
+public class VakansieString {
 
     @NotNull
     private String from;
+
+    @NotNull
     private String to;
 
-    public Vakansie() {
+    public VakansieString() {
     }
 
-    public Vakansie(String from, String to) {
+    public VakansieString(String from, String to) {
         this.from = from;
         this.to = to;
     }
