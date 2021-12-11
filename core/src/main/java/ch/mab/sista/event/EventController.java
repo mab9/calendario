@@ -25,7 +25,7 @@ public class EventController {
     // curl -i -H -X GET "http://localhost:8080/event/1"
     @GetMapping("{id}")
     @ResponseBody
-    private EventDto getEvent(@PathVariable("id") String eventId) {
+    public EventDto getEvent(@PathVariable("id") String eventId) {
         log.info("get event with id '{}'", eventId);
         return new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
     }
@@ -33,7 +33,7 @@ public class EventController {
     // curl -i -H "Content-Type: application/json"  -d "{\"userId\":\"1\",\"id\":\"1\",\"from\":\"2020-06-12\",\"to\":\"2020-06-12\"}" -X POST "http://localhost:8080/event"
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private EventDto postEvent(@RequestBody @Validated EventDto dto) {
+    public EventDto postEvent(@RequestBody @Validated EventDto dto) {
         log.info("post event '{}'", dto);
         return new EventDto(dto.userId(), "1", dto.from(), dto.to());
     }
@@ -41,7 +41,7 @@ public class EventController {
     // curl -i -H "Content-Type: application/json"  -d "{\"userId\":\"1\",\"id\":\"1\",\"from\":\"2020-06-12\",\"to\":\"2020-06-12\"}" -X PUT "http://localhost:8080/event"
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    private EventDto putEvent(@RequestBody @Validated EventDto dto) {
+    public EventDto putEvent(@RequestBody @Validated EventDto dto) {
         log.info("put event '{}'", dto);
         return new EventDto(dto.userId(), dto.id(), dto.from(), dto.to().plusDays(1));
     }
@@ -49,7 +49,7 @@ public class EventController {
     // curl -i -H -X DELETE "http://localhost:8080/event/1"
     @DeleteMapping("{id}")
     @ResponseBody
-    private EventDto deleteEvent(@PathVariable("id") String eventId) {
+    public EventDto deleteEvent(@PathVariable("id") String eventId) {
         log.info("delete event with id '{}'", eventId);
         return new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
     }

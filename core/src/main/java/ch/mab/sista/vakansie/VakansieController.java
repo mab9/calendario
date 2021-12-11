@@ -47,7 +47,7 @@ public class VakansieController {
     @PostMapping
     @ResponseBody
     public boolean dateTime(@RequestParam("date") @DateTimeFormat(pattern = "yyyy.MM.dd") LocalDate date) {
-        System.out.println(date);
+        log.info(date.toString());
         return date.isBefore(LocalDate.now());
     }
 }

@@ -26,7 +26,7 @@ public class EventReactiveController {
     // curl -i -H -X GET "http://localhost:8080/reactive/event/1"
     @GetMapping("{id}")
     @ResponseBody
-    private Mono<EventDto> getEvent(@PathVariable("id") String eventId) {
+    public Mono<EventDto> getEvent(@PathVariable("id") String eventId) {
         log.info("get event with id '{}'", eventId);
         Supplier<EventDto> supplier = () -> new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
         return Mono.fromSupplier(supplier);
@@ -34,7 +34,7 @@ public class EventReactiveController {
 
     @GetMapping
     @ResponseBody
-    private Flux<EventDto> getAllEvents() {
+    public Flux<EventDto> getAllEvents() {
         return Flux.fromIterable(List.of(event1, event2, event3));
     }
 }
