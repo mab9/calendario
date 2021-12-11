@@ -43,7 +43,7 @@ public class EventController {
     @ResponseBody
     public EventDto putEvent(@RequestBody @Validated EventDto dto) {
         log.info("put event '{}'", dto);
-        return new EventDto(dto.userId(), dto.id(), dto.from(), dto.to());
+        return new EventDto(dto.userId(), dto.id(), dto.from(), dto.to().plusDays(1));
     }
 
     // curl -i -H -X DELETE "http://localhost:8080/event/1"
