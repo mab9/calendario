@@ -1,7 +1,35 @@
 import {dom} from "../base/church/dom.js";
-import {Observable} from '../base/observable/observable.js';
+import {Observable, ObservableList} from '../base/observable/observable.js';
+import {
+    Attribute,
+    LABEL,
+    valueOf,
+    setValueOf,
+    setLabelOf,
+} from '../base/presentationModel/presentationModel.js';
 
 export {MasterController, EventView, SelectionController};
+
+const Event = () => {                               // facade
+    const from = Attribute(new Date());
+    setLabelOf(from)("From");
+
+    const to  = Attribute(new Date());
+    setLabelOf(to)("To");
+
+    const status  = Attribute("requested");
+    setLabelOf(status)("Status");
+
+    // xyzAttr.setConverter( input => input.toUpperCase() );
+    // xyzAttr.setValidator( input => input.length >= 3   );
+
+    return {
+        from:   from,
+        to:     to,
+        status: status,
+    }
+};
+
 
 /**
  * @return MasterController
@@ -9,15 +37,17 @@ export {MasterController, EventView, SelectionController};
  */
 const MasterController = () => {
 
+    const itemListModel = ObservableList([]); // observable array of events, this state is private
+
     const create = from => to => alert(
         "new event from " + from + " to " + to + ".");
 
-    /**
-     * @typedef {Readonly<object>} EventController
-     */
-    return Object.freeze({
-        create: create
-    })
+    return {
+        addItem:      () => itemListModel.add(Event()),
+        removeItem:   itemListModel.del,
+        onItemAdd:    itemListModel.onAdd,
+        onItemRemove: itemListModel.onDel,
+    }
 }
 
 /**
@@ -56,7 +86,21 @@ const EventView = (masterController, selectionController, rootElement) => {
     `);
 
     const createBtn = view.querySelector('#create');
-    createBtn.onclick = () => masterController.create("1")("2");
+    createBtn.onclick = () => masterController.addItem();
+
+    const eventsContainer = view.querySelector('.events');
+
+    masterController.onItemAdd(item => {
+        eventsContainer.appendChild(dom(`
+             <div id="event-2" class="card">
+                <div>from ` + valueOf(item.from).toISOString().substring(0, 10) + `</div>
+                <div>to ` + valueOf(item.to).toISOString().substring(0, 10) + `</div>
+                <div>4 days in a row</div>
+                <div>4 holidays</div>
+                <div>Status: <strong>` + valueOf(item.status) + `</strong></div>
+            </div>
+        `));
+    })
 
     rootElement.appendChild(view)
 };

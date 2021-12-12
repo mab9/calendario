@@ -45,7 +45,7 @@ const TranslationService = () => {
         const lang = currentLang.getValue();
         isLangLoaded.setValue(false);
 
-        fetch("src/assets/i18n/" + lang + ".json")
+        fetch("src/i18n/" + lang + ".json")
         .then(response => response.json())
         .then(json => {
             langTranslations = json;
