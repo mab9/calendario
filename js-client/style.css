@@ -42,7 +42,7 @@ body {
     margin: 0;
 }
 
-.cards-section {
+.events {
     margin: 3em auto 1em auto;
     max-width: 40em;
 }
@@ -103,13 +103,6 @@ body {
 
 .plus-btn:hover {
     background-color: var(--color-secondary-background-dark);
-}
-
-/* Content */
-#content {
-    /*  margin-top: var(--main-nav-height);*/
-    height: 100%;
-    width: 100%;
 }
 
 
