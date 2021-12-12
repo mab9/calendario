@@ -4,6 +4,7 @@ export { config, env}
 
 const env = {
     LOCAL: "local",
+    DEV: "dev",
     PROD: "prod",
 }
 

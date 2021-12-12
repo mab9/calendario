@@ -27,12 +27,6 @@ const EventController = () => {
 const EventView = (rootElement, eventController) => {
 
     const view = dom(`
-
-            <DIV class="topnav-header"></DIV>
-            <NAV class="topnav">
-                <a>Vakansie</a>
-            </NAV>
-
             <DIV id="content-section"></DIV>
                     <div class="cards-section">
                         <button class="plus-btn" id="create">+</button>
@@ -59,7 +53,6 @@ const EventView = (rootElement, eventController) => {
                             <div>4 holidays</div>
                             <div>Status: <strong>denied</strong></div>
                         </div>
-
                     </div>
             </DIV>`);
 

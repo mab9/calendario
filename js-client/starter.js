@@ -14,6 +14,15 @@ const start = (appRootId, authenticated) => {
     const root = document.getElementById(CONTENT_WRAPPER)
     const vakansie = dom(`<div id="${appRootId}">`);
 
+    const nav = dom(`
+            <DIV class="topnav-header"></DIV>
+            <NAV class="topnav">
+                <a>Vakansie</a>
+            </NAV>
+    `)
+
+    vakansie.appendChild(nav);
+
     EventView(vakansie, ctrl);
     root.replaceWith(vakansie); // why replace???
 }
