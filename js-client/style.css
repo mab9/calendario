@@ -48,7 +48,7 @@ body {
 }
 
 .card {
-    transition: all ease-in-out .5s;
+    transition: all ease-in-out .3s;
     max-width: 40em;
     margin: 1em auto 1em auto;
     padding: 2em;
@@ -60,7 +60,12 @@ body {
 
     display: grid;
     grid-column-gap: 0.5em;
-    grid-template-columns: 21% 18% 21% 15% 25%; /* or use auto */
+    grid-template-columns: 30% 30% 30% 10%;  /* or use auto */
+}
+
+.card:hover {
+    box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.2),
+                4px 12px 23px 5px rgba(0, 0, 0, 0.19);
 }
 
 /* TOP NAV */
@@ -103,6 +108,27 @@ body {
 
 .plus-btn:hover {
     background-color: var(--color-secondary-background-dark);
+}
+
+.icon-delete {
+    background-color: var(--color-primary-background);
+    color: var(--color-secondary-font);
+    width: 25px;
+    height: 25px;
+    font-size: large;
+
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.icon-delete:hover {
+    background-color: var(--color-primary-background-dark);
 }
 
 
