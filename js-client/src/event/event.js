@@ -34,8 +34,8 @@ const EventView = (rootElement, eventController) => {
             </NAV>
 
             <DIV id="content-section"></DIV>
-                    <div>
-                        <button id="create">+</button>
+                    <div class="cards-section">
+                        <button class="plus-btn" id="create">+</button>
                         <div id="event-1" class="card">
                             <div>from 2021-12-03</div>
                             <div>to 2021-12-12</div>

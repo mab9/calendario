@@ -3,7 +3,7 @@
 
 
 :root {
-    /* Colors wood / natural colors https://material.io/resources/color/#!/?view.left=1&view.right=0&primary.color=8D6E63 */
+    /* Colors wood / natural colors https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=8D6E63&secondary.color=37464f&primary.text.color=ffffff&secondary.text.color=ffffff */
 
     --color-primary-font: #ffffff;
     --color-primary-font-light: #000000;
@@ -12,9 +12,9 @@
     --color-primary-background-light: #be9c91;
     --color-primary-background-dark: #5e4238;
 
-    --color-secondary-font: #000000;
-    --color-secondary-font-light: #000000;
-    --color-secondary-font-dark: #000000;
+    --color-secondary-font: #ffffff;
+    --color-secondary-font-light: #ffffff;
+    --color-secondary-font-dark: #ffffff;
     --color-secondary-background: #37464f;
     --color-secondary-background-light: #62717b;
     --color-secondary-background-dark: #101f27;
@@ -37,12 +37,15 @@ html {
 
 body {
     background-color: var(--color-background);
-    /*min-height:       calc(100% - var(--main-nav-height));*/
     width: 100%;
     padding: 0;
     margin: 0;
 }
 
+.cards-section {
+    margin: 3em auto 1em auto;
+    max-width: 40em;
+}
 
 .card {
     transition: all ease-in-out .5s;
@@ -50,12 +53,14 @@ body {
     margin: 1em auto 1em auto;
     padding: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 1em;
+    background-color: var(--color-background-light);
+    color: var(--color-secondary-background-dark);
 
     display: grid;
     grid-column-gap: 0.5em;
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 21% 18% 21% 15% 25%; /* or use auto */
 }
 
 /* TOP NAV */
@@ -70,12 +75,34 @@ body {
 }
 
 .topnav a {
-  float: left;
-  color:VAR(--color-primary-font);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+    float: left;
+    color: VAR(--color-primary-font);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.plus-btn {
+    background-color: var(--color-secondary-background);
+    color: var(--color-secondary-font);
+
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.plus-btn:hover {
+    background-color: var(--color-secondary-background-dark);
 }
 
 /* Content */
