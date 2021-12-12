@@ -1,17 +1,18 @@
 import {dom} from "../base/church/dom.js";
 
-export {CaliController, CaliView};
+export {EventController, EventView};
 
 /**
- * @return CaliController
+ * @return EventController
  * @constructor
  */
-const CaliController = () => {
+const EventController = () => {
 
-    const create = from => to => alert("new event from " + from  + " to " + to + ".");
+    const create = from => to => alert(
+        "new event from " + from + " to " + to + ".");
 
     /**
-     * @typedef {Readonly<object>} CaliController
+     * @typedef {Readonly<object>} EventController
      */
     return Object.freeze({
         create: create
@@ -20,12 +21,18 @@ const CaliController = () => {
 
 /**
  * @param rootElement
- * @param caliController
+ * @param eventController
  * @constructor
  */
-const CaliView = (rootElement, caliController) => {
+const EventView = (rootElement, eventController) => {
 
     const view = dom(`
+
+            <DIV class="topnav-header"></DIV>
+            <NAV class="topnav">
+                <a>Vakansie</a>
+            </NAV>
+
             <DIV id="content-section"></DIV>
                     <div>
                         <button id="create">+</button>
@@ -57,7 +64,7 @@ const CaliView = (rootElement, caliController) => {
             </DIV>`);
 
     const createBtn = view.querySelector('#create');
-    createBtn.onclick = () => caliController.create("1")("2");
+    createBtn.onclick = () => eventController.create("1")("2");
 
     rootElement.appendChild(view)
 };

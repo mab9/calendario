@@ -1,6 +1,6 @@
 import {dom} from "./src/base/church/dom.js";
 import {translationService} from "./src/base/service/translation.service.js";
-import {CaliController, CaliView} from "./src/cali/cali.js";
+import {EventController, EventView} from "./src/event/event.js";
 
 export {start} ;
 
@@ -9,12 +9,12 @@ translationService.init();
 
 const start = (appRootId, authenticated) => {
     const CONTENT_WRAPPER = 'root';
-    const ctrl = CaliController();
+    const ctrl = EventController();
 
     const root = document.getElementById(CONTENT_WRAPPER)
     const vakansie = dom(`<div id="${appRootId}">`);
 
-    CaliView(vakansie, ctrl);
+    EventView(vakansie, ctrl);
     root.replaceWith(vakansie); // why replace???
 }
 
