@@ -34,6 +34,20 @@ body {
 }
 
 
+.card {
+    transition: all ease-in-out .5s;
+    max-width:  40em;
+    margin:     1em auto 1em auto;
+    padding:    2em;
+    box-shadow: 0 4px  8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1em;
+
+    display: grid;
+    grid-column-gap: 0.5em;
+    grid-template-columns: auto auto auto auto auto;
+}
+
 /* Content */
 #content {
 /*  margin-top: var(--main-nav-height);*/
