@@ -49,7 +49,7 @@ body {
 
 .card {
     transition: all ease-in-out .3s;
-    max-width: 40em;
+    max-width: 45em;
     margin: 1em auto 1em auto;
     padding: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
@@ -60,12 +60,31 @@ body {
 
     display: grid;
     grid-column-gap: 0.5em;
-    grid-template-columns: 30% 30% 30% 10%;  /* or use auto */
+    grid-template-columns: 32% 28% 26% 14%;  /* or use auto */
 }
 
 .card:hover {
     box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.2),
                 4px 12px 23px 5px rgba(0, 0, 0, 0.19);
+}
+
+.card-date input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid var(--color-primary-background);
+    background-color: var(--color-background-light);
+
+    outline: none;
+    cursor: pointer;
+}
+
+.card-date input:hover {
+    border-bottom: 2px solid var(--color-primary-background-dark);
+}
+
+.card-date input ::-webkit-inner-spin-button {
+    display: none;
 }
 
 /* TOP NAV */
@@ -121,7 +140,7 @@ body {
     border: none;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: none;
 
     outline: none;
     cursor: pointer;
@@ -129,6 +148,10 @@ body {
 
 .icon-delete:hover {
     background-color: var(--color-primary-background-dark);
+}
+
+.icon-delete.selected {
+    display: inline;
 }
 
 

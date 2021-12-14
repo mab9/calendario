@@ -97,13 +97,11 @@ const EventView = (masterController, selectionController, rootElement) => {
 const SelectionController = () => {
 
     const selectedItem = Observable("NoItem");
-    return {}
 
-    /*
     return {
-        setSelectedItem : selectedItemObs.setValue,
-        getSelectedItem : selectedItemObs.getValue,
-        onItemSelected:   selectedItemObs.onChange,
-        clearSelection:     () => selectedItemObs.setValue("NoItem"),
-    }*/
+        setSelectedItem : selectedItem.setValue,
+        getSelectedItem : selectedItem.getValue,
+        onItemSelected  : selectedItem.onChange,
+        clearSelection  : () => selectedItem.setValue("NoItem"),
+    }
 };

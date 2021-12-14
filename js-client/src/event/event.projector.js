@@ -1,4 +1,8 @@
-import {labelOf, valueOf} from '../base/presentationModel/presentationModel.js';
+import {
+    labelOf, onValueChange,
+    setValueOf,
+    valueOf
+} from '../base/presentationModel/presentationModel.js';
 import {dom} from '../base/church/dom.js';
 
 export {eventListItemProjector}
@@ -31,26 +35,38 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
     event.appendChild(stateElement);
     event.appendChild(deleteElement);
 
-    // fromInputElement.onfocus = _ => selectionController.setSelectedPerson(item);
-    // toInputElement.onfocus  = _ => selectionController.setSelectedPerson(item);
+    eventElement.onmouseover = _ => selectionController.setSelectedItem(item);
+    eventElement.onmouseleave = _ => selectionController.clearSelection();
 
-    /*selectionController.onPersonSelected(
-        selected => selected === item
-          ? deleteButton.classList.add("selected")
-          : deleteButton.classList.remove("selected")
-    );*/
+    selectionController.onItemSelected(selected =>
+        selected === item
+          ? deleteElement.classList.add("selected")
+          : deleteElement.classList.remove("selected")
+    );
 
+    // define item.from and to date formatt. either date -> then upadte the binding, or text, update set value.
     masterController.onItemRemove((removedItem, removeMe) => {
         if (removedItem !== item) return;
         rootElement.removeChild(eventElement);
-        //selectionController.clearSelection();
+        selectionController.clearSelection();
         removeMe();
     });
 
     rootElement.appendChild(eventElement);
-    //selectionController.setSelectedPerson(item);
 };
 
 const dateProjector = dateAttr => {
-    return dom(`<div>${labelOf(dateAttr)} ${valueOf(dateAttr).toISOString().substring(0, 10)}</div>`);
+    const element = dom(`
+        <div class="card-date">
+            ${labelOf(dateAttr)}
+            <input type="date" value="${valueOf(dateAttr).toISOString().substring(0, 10)}">
+        </div>`
+    );
+
+    applyDateBindings(element.querySelector("input"))(dateAttr);
+    return element;
 };
+
+const applyDateBindings = element => dateAttr => {
+    element.onchange = () => setValueOf(dateAttr)(element.value)
+}
