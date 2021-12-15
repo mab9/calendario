@@ -10,3 +10,6 @@ import '../observable/observable.test.js'
 
 import '../service/local.service.test.js';
 import '../service/translation.service.test.js'
+
+
+import '../../event/event.test.js'

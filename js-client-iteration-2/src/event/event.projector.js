@@ -25,7 +25,7 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
     const toInputElement  = dateProjector(item.to);
     const stateElement = dom(` <div> State: <strong> ${valueOf(item.state)} </strong></div>`);
 
-    const deleteElement = document.createElement("DIV");
+    const deleteElement = document.createElement("button");
     deleteElement.onclick = _ => masterController.removeItem(item);
     deleteElement.classList = "icon-delete";
     deleteElement.innerText = "x";

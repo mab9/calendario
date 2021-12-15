@@ -66,7 +66,7 @@ function report(origin, ok) {
     write("|" + reportLine+ "|");
     for (let i = 0; i < ok.length; i++) {
         if( ! ok[i]) {
-            write("|    Test #"+ padLeft(i, 3) +" failed                     |");
+            write("|    Test #"+ padLeft(i, 3) +" failed                               |");
         }
     }
     bar(reportLine.length);
