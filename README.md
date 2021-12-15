@@ -2,10 +2,8 @@
 # Vakansie js-client
 
 ## 1 iteration - the projector pattern
-
 Make use of a simple projector.
-
-Webcl week 5
+[Simple Projector Pattern](https://www.github.io/mab9/sista//View.html)
 
 ## 2 iteration - apply tests and CSS
 
