@@ -65,11 +65,14 @@ git clone https://github.com/mab9/calendario.git
 <br>
 
 
-### 2 iteration - apply tests and CSS
+### 2 iteration - development strategy, TDD, local
 
-Apply test and CSS
+Apply test and CSS, local development
 
-### 3 iteration - generalize projector pattern
+- describe test suite
+- describe local starter and platform config
+
+### 3 iteration - generalize projector pattern, CSS, what so ever.
 
 Generalize projector, so that it may also be used with other models
 

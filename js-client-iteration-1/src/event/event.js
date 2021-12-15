@@ -3,7 +3,7 @@ import {Observable, ObservableList} from '../base/observable/observable.js';
 import {
     Attribute,
     setLabelOf,
-} from '../base/presentationModel/presentationModel.js';
+} from './presentation.model.js';
 import {eventListItemProjector} from './event.projector.js';
 
 export {MasterController, EventView, SelectionController};

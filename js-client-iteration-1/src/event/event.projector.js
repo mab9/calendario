@@ -2,7 +2,7 @@ import {
     labelOf, onValueChange,
     setValueOf,
     valueOf
-} from '../base/presentationModel/presentationModel.js';
+} from './presentation.model.js';
 import {dom} from '../base/church/dom.js';
 
 export {eventListItemProjector}

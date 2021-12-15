@@ -1,6 +1,6 @@
-import {Observable} from "../observable/observable.js";
-import {id} from "../church/church.js";
-import {isFunction} from "../church/isfnc.js";
+import {Observable} from "../base/observable/observable.js";
+import {id} from "../base/church/church.js";
+import {isFunction} from "../base/church/isfnc.js";
 
 export {
     Attribute, presentationModelFromAttributeNames,
