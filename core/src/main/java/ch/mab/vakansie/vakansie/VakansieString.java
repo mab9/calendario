@@ -1,4 +1,4 @@
-package ch.mab.sista.vakansie;
+package ch.mab.vakansie.vakansie;
 
 
 import javax.validation.constraints.NotNull;

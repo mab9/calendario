@@ -1,4 +1,4 @@
-package ch.mab.sista.event.business;
+package ch.mab.vakansie.event.business;
 
 import org.springframework.stereotype.Service;
 

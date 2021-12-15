@@ -1,4 +1,4 @@
-package ch.mab.sista.event;
+package ch.mab.vakansie.event;
 
 import java.util.Objects;
 import org.springframework.web.reactive.function.client.WebClient;

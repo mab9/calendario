@@ -1,4 +1,4 @@
-package ch.mab.sista.vakansie;
+package ch.mab.vakansie.vakansie;
 
 import java.time.LocalDate;
 import org.slf4j.Logger;

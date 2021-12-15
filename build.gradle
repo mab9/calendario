@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'ch.mab.sista'
+group = 'ch.mab.vakansie'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 

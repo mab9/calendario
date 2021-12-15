@@ -1,8 +1,8 @@
-package ch.mab.sista;
+package ch.mab.vakansie;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-import ch.mab.sista.event.controller.EventController;
+import ch.mab.vakansie.event.controller.EventController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

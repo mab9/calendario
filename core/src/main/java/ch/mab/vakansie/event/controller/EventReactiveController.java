@@ -1,6 +1,6 @@
-package ch.mab.sista.event.controller;
+package ch.mab.vakansie.event.controller;
 
-import ch.mab.sista.event.EventDto;
+import ch.mab.vakansie.event.EventDto;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Supplier;

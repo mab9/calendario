@@ -1,6 +1,6 @@
-package ch.mab.sista.event.controller;
+package ch.mab.vakansie.event.controller;
 
-import ch.mab.sista.event.EventDto;
+import ch.mab.vakansie.event.EventDto;
 import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
