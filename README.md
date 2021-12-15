@@ -4,7 +4,7 @@
 ## 1 iteration - the projector pattern
 Make use of a simple projector.
 
-[Simple Projector Pattern](https://github.com/mab9/calendario/js-client-iteration-1/index.html)
+[Simple Projector Pattern](https://github.com/mab9/calendario/blob/main/js-client-iteration-1/index.html)
 
 ## 2 iteration - apply tests and CSS
 
