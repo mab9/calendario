@@ -1,0 +1,172 @@
+/*@import "src/assets/fonts/FontAwesome/css/fontawesome.min.css";*/
+/*@import "src/assets/fonts/FontAwesome/css/solid.min.css";*/
+
+
+:root {
+    /* Colors wood / natural colors https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=8D6E63&secondary.color=37464f&primary.text.color=ffffff&secondary.text.color=ffffff */
+
+    --color-primary-font: #ffffff;
+    --color-primary-font-light: #000000;
+    --color-primary-font-dark: #ffffff;
+    --color-primary-background: #8c6d62;
+    --color-primary-background-light: #be9c91;
+    --color-primary-background-dark: #5e4238;
+
+    --color-secondary-font: #ffffff;
+    --color-secondary-font-light: #ffffff;
+    --color-secondary-font-dark: #ffffff;
+    --color-secondary-background: #37464f;
+    --color-secondary-background-light: #62717b;
+    --color-secondary-background-dark: #101f27;
+
+    --color-background: #E1E2E1;
+    --color-background-light: #F5F5F6;
+    --color-background-dark: #c9c9c9;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    color: var(--color-primary-font);
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.events {
+    margin: 3em auto 1em auto;
+    max-width: 40em;
+}
+
+.card {
+    transition: all ease-in-out .3s;
+    max-width: 45em;
+    margin: 1em auto 1em auto;
+    padding: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1em;
+    background-color: var(--color-background-light);
+    color: var(--color-secondary-background-dark);
+
+    display: grid;
+    grid-column-gap: 0.5em;
+    grid-template-columns: 32% 28% 26% 14%;  /* or use auto */
+}
+
+.card:hover {
+    box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.2),
+                4px 12px 23px 5px rgba(0, 0, 0, 0.19);
+}
+
+.card-date input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid var(--color-primary-background);
+    background-color: var(--color-background-light);
+
+    outline: none;
+    cursor: pointer;
+}
+
+.card-date input:hover {
+    border-bottom: 2px solid var(--color-primary-background-dark);
+}
+
+.card-date input ::-webkit-inner-spin-button {
+    display: none;
+}
+
+/* TOP NAV */
+.topnav-header {
+    height: 1rem;
+    background-color: VAR(--color-primary-background-dark);
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: VAR(--color-primary-background);
+}
+
+.topnav a {
+    float: left;
+    color: VAR(--color-primary-font);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.plus-btn {
+    background-color: var(--color-secondary-background);
+    color: var(--color-secondary-font);
+
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.plus-btn:hover {
+    background-color: var(--color-secondary-background-dark);
+}
+
+.icon-delete {
+    background-color: var(--color-primary-background);
+    color: var(--color-secondary-font);
+    width: 25px;
+    height: 25px;
+    font-size: large;
+
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.icon-delete:hover {
+    background-color: var(--color-primary-background-dark);
+}
+
+.icon-delete.selected {
+    display: inline;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+    .button {
+        font-size: 0.8em;
+    }
+}
