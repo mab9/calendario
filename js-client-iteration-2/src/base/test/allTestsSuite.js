@@ -3,6 +3,8 @@
 import '../church/strings.test.js'
 import '../church/dom.test.js'
 
+import '../church/appends.test.js';
+
 import '../church/church.test.js'
 import '../church/rock.test.js'
 
