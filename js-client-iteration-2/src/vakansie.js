@@ -1,13 +1,22 @@
-import {dom} from "./src/base/church/dom.js";
-import {translationService} from "./src/base/service/translation.service.js";
-import {MasterController, SelectionController, EventView} from "./src/event/event.js";
+import {dom} from "./base/church/dom.js";
+import {translationService} from "./base/service/translation.service.js";
+import {
+    EventView,
+    MasterController,
+    SelectionController
+} from "./event/event.js";
 
 export {start} ;
 
-const appRootId = window.appRootId;
-translationService.init();
+/**
+ * @param {string} appRootId
+ * @param {Event[]} events
+ * @constructor
+ */
+const start = (appRootId, events) => {
 
-const start = (appRootId, authenticated) => {
+    translationService.init();
+
     const CONTENT_WRAPPER = 'root';
     const root = document.getElementById(CONTENT_WRAPPER)
 
@@ -26,10 +35,9 @@ const start = (appRootId, authenticated) => {
     const selectionController = SelectionController();
     const content = mainContainer.querySelector("#content");
 
+
     EventView(masterController, selectionController, content);
+
+    events.forEach(item => masterController.addItem(item));
     root.replaceWith(mainContainer); // why replace???
 }
-
-// replace to dedicated starter
-const render = authenticated => start(appRootId, authenticated);
-render(appRootId, true)

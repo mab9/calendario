@@ -6,13 +6,9 @@ import {
 } from '../base/presentationModel/presentationModel.js';
 import {eventListItemProjector} from './event.projector.js';
 
-export {MasterController, EventView, SelectionController};
+export {MasterController, EventView, SelectionController, EmptyEvent};
 
-/**
- * @return Event
- * @constructor
- */
-const Event = () => {                               // facade
+const EmptyEvent = () => {                               // facade
     //const from = Attribute(new Date().toISOString().substr(0,10));
     const from = Attribute(''); // empty date
     setLabelOf(from)("From");
@@ -26,6 +22,9 @@ const Event = () => {                               // facade
     // xyzAttr.setConverter( input => input.toUpperCase() );
     // xyzAttr.setValidator( input => input.length >= 3   );
 
+    /**
+     * @returns {Event} event
+     */
     return {
         from: from,
         to: to,
@@ -33,18 +32,21 @@ const Event = () => {                               // facade
     }
 };
 
-/**
- * @return MasterController
- * @constructor
- */
+
+
+
+
 const MasterController = () => {
 
     const itemListModel = ObservableList([]); // observable array of events, this state is private
 
+    /**
+     * @returns {MasterController} Event Controller
+     */
     return {
-        addItem:      () => itemListModel.add(Event()),
-        removeItem:   itemListModel.del,
-        onItemAdd:    itemListModel.onAdd,
+        addItem: itemListModel.add,
+        removeItem: itemListModel.del,
+        onItemAdd: itemListModel.onAdd,
         onItemRemove: itemListModel.onDel,
     }
 }
@@ -64,27 +66,27 @@ const EventView = (masterController, selectionController, rootElement) => {
 
     const [createBtn, events] = view.children;
 
-    const render = item => eventListItemProjector(masterController, selectionController, events, item);
+    const render = item => eventListItemProjector(masterController,
+        selectionController, events, item);
 
     // binding
     masterController.onItemAdd(render);
-    createBtn.onclick = () => masterController.addItem();
+    createBtn.onclick = () => masterController.addItem(EmptyEvent());
 
     rootElement.appendChild(view)
 };
 
-/**
- * @return SelectionController
- * @constructor
- */
 const SelectionController = () => {
 
     const selectedItem = Observable("NoItem");
 
+    /**
+     * @returns {SelectionController} Event Selection Controller
+     */
     return {
-        setSelectedItem : selectedItem.setValue,
-        getSelectedItem : selectedItem.getValue,
-        onItemSelected  : selectedItem.onChange,
-        clearSelection  : () => selectedItem.setValue("NoItem"),
+        setSelectedItem: selectedItem.setValue,
+        getSelectedItem: selectedItem.getValue,
+        onItemSelected: selectedItem.onChange,
+        clearSelection: () => selectedItem.setValue("NoItem"),
     }
 };

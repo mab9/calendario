@@ -15,3 +15,4 @@ import '../service/translation.service.test.js'
 
 
 import '../../event/event.test.js'
+import '../../service/jsonToModel.test.js'
