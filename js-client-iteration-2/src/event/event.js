@@ -13,10 +13,11 @@ export {MasterController, EventView, SelectionController};
  * @constructor
  */
 const Event = () => {                               // facade
-    const from = Attribute(new Date());
+    //const from = Attribute(new Date().toISOString().substr(0,10));
+    const from = Attribute(''); // empty date
     setLabelOf(from)("From");
 
-    const to = Attribute(new Date());
+    const to = Attribute('');
     setLabelOf(to)("To");
 
     const state = Attribute("requested");
@@ -57,35 +58,17 @@ const MasterController = () => {
 const EventView = (masterController, selectionController, rootElement) => {
 
     const view = dom(`
-        <div class="events">
-            <button class="plus-btn" id="create">+</button>
-            <div id="event-1" class="card">
-                <div>from 2021-12-03</div>
-                <div>to 2021-12-12</div>
-                <div>state: <strong>approved</strong></div>
-            </div>
-            <div id="event-2" class="card">
-                <div>from 2021-12-23</div>
-                <div>to 2021-12-28</div>
-                <div>state: <strong>requested</strong></div>
-            </div>
-            <div id="event-2" class="card">
-                <div>from 2022-02-12</div>
-                <div>to 2022-02-15</div>
-                <div>state: <strong>denied</strong></div>
-            </div>
-        </div>
+        <button class="plus-btn">+</button>
+        <div class="events"></div>
     `);
 
-    const createBtn = view.querySelector('#create');
-    createBtn.onclick = () => masterController.addItem();
+    const [createBtn, events] = view.children;
 
-    const eventsContainer = view.querySelector('.events');
-
-    const render = item => eventListItemProjector(masterController, selectionController, eventsContainer, item);
+    const render = item => eventListItemProjector(masterController, selectionController, events, item);
 
     // binding
     masterController.onItemAdd(render);
+    createBtn.onclick = () => masterController.addItem();
 
     rootElement.appendChild(view)
 };

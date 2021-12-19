@@ -15,26 +15,24 @@ eventSuite.add("crud", assert => {
     // create the views, incl. binding
     EventView(masterController, selectionController, masterContainer);
 
-    const container = masterContainer.children[0]; // get inner div
+    const [createBtn, container] = masterContainer.children;
     const elementsPerRow = 1;
+    const defaultElements = 0;
 
-    // 4 = 3 start elements + 1 create button
-
-    assert.is(container.children.length, 0*elementsPerRow + 4);
-
-    masterController.addItem();
-    assert.is(container.children.length, 1*elementsPerRow + 4);
+    assert.is(container.children.length, 0*elementsPerRow+ defaultElements);
 
     masterController.addItem();
-    assert.is(container.children.length, 2*elementsPerRow + 4);
+    assert.is(container.children.length, 1*elementsPerRow+ defaultElements);
 
-    const createButton = container.querySelector('.plus-btn')
-    createButton.click();
-    assert.is(container.children.length, 3*elementsPerRow + 4);
+    masterController.addItem();
+    assert.is(container.children.length, 2*elementsPerRow+ defaultElements);
+
+    createBtn.click();
+    assert.is(container.children.length, 3*elementsPerRow+ defaultElements);
 
     const firstDeleteButton = container.querySelector('.icon-delete')
     firstDeleteButton.click();
-    assert.is(container.children.length, 2*elementsPerRow + 4);
+    assert.is(container.children.length, 2*elementsPerRow+ defaultElements);
 });
 
 eventSuite.run();

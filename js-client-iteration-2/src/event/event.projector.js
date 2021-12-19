@@ -52,14 +52,14 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
         removeMe();
     });
 
-    rootElement.appendChild(eventElement);
+    rootElement.prepend(eventElement);
 };
 
 const dateProjector = dateAttr => {
     const element = dom(`
         <div class="card-date">
             ${labelOf(dateAttr)}
-            <input type="date" value="${valueOf(dateAttr).toISOString().substring(0, 10)}">
+            <input type="date" value="${valueOf(dateAttr)}">
         </div>`
     );
 
