@@ -5,6 +5,7 @@ import {
     setLabelOf,
 } from '../base/presentationModel/presentationModel.js';
 import {eventListItemProjector} from './event.projector.js';
+import {vakansieService} from '../service/event.service.remote.js';
 
 export {MasterController, EventView, SelectionController, EmptyEvent};
 
@@ -40,6 +41,17 @@ const MasterController = () => {
 
     const itemListModel = ObservableList([]); // observable array of events, this state is private
 
+    const createItem = () => {
+        const newItem = EmptyEvent();
+        itemListModel.add(newItem);
+
+        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
+        vakansieService(URL).createEvent(newItem)(event => {
+            // glue created event to new Item
+            setValueOf(newItem.id)(valueOf(event.id))
+        })
+    }
+
     /**
      * @returns {MasterController} Event Controller
      */
@@ -48,6 +60,7 @@ const MasterController = () => {
         removeItem: itemListModel.del,
         onItemAdd: itemListModel.onAdd,
         onItemRemove: itemListModel.onDel,
+        createItem : createItem,
     }
 }
 
@@ -71,7 +84,7 @@ const EventView = (masterController, selectionController, rootElement) => {
 
     // binding
     masterController.onItemAdd(render);
-    createBtn.onclick = () => masterController.addItem(EmptyEvent());
+    createBtn.onclick = () => masterController.createItem();
 
     rootElement.appendChild(view)
 };

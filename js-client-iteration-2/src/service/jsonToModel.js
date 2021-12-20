@@ -1,7 +1,7 @@
 import {EmptyEvent} from '../event/event.js';
-import {setValueOf} from '../base/presentationModel/presentationModel.js';
+import {setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
 
-export {toEvent}
+export {toEvent, toJson}
 
 const toEvent = jsonEvent => {
 
@@ -13,4 +13,15 @@ const toEvent = jsonEvent => {
     setValueOf(emptyEvent.state)(jsonEvent.state)
 
     return emptyEvent;
+};
+
+
+const toJson = event => {
+    return {
+        id: '',
+        from: valueOf(event.from),
+        to: valueOf(event.to),
+        state: valueOf(event.state),
+        userId: ''
+    }
 };

@@ -1,14 +1,9 @@
 import "./service.doc.js"
-import {toEvent} from './jsonToModel.js';
+import {toEvent, toJson } from './jsonToModel.js';
 import {client} from '../base/rest/restClient.js';
 
 export {vakansieService}
 
-/**
- * Concrete factory for local {@link VakansieService} functions.
- * @constructor
- * @returns {VakansieService}
- */
 const vakansieService = URL => {
 
     const loadeEvents = withEvents =>
@@ -20,5 +15,23 @@ const vakansieService = URL => {
         })
         .catch(err => console.error(err));
 
-    return {loadeEvents: loadeEvents}
+    const createEvent = event => callback => {
+        const data = toJson(event);
+        client(URL, 'POST', data)
+        .then(json => {
+            const eventAttributes = json.map(item => toEvent(item))
+            callback(eventAttributes);
+        })
+        .catch(err => console.error(err));
+    }
+
+    /**
+     * Concrete factory for local {@link VakansieService} functions.
+     * @constructor
+     * @returns {VakansieService}
+     */
+    return {
+        loadeEvents: loadeEvents,
+        createEvent : createEvent,
+    }
 };
