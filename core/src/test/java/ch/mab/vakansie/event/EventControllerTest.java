@@ -44,7 +44,7 @@ class EventControllerTest {
     @Test
     void getEvent_shouldReturnEvent_fromEventId() throws Exception {
         String eventId = "1";
-        EventDto dto = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
+        EventDto dto = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1), "requested");
 
         String jsonEvent = objectMapper.writeValueAsString(dto);
 
@@ -55,10 +55,10 @@ class EventControllerTest {
 
     @Test
     void postEvent_shouldReturnEventId_fromCreatedEvent() throws Exception {
-        EventDto dtoPost = new EventDto("1", null, LocalDate.now(), LocalDate.now().plusDays(1));
+        EventDto dtoPost = new EventDto("1", null, LocalDate.now(), LocalDate.now().plusDays(1), "requested");
         String jsonEventPost = objectMapper.writeValueAsString(dtoPost);
 
-        EventDto dtoExpected = new EventDto("1", "1", LocalDate.now(), LocalDate.now().plusDays(1));
+        EventDto dtoExpected = new EventDto("1", "1", LocalDate.now(), LocalDate.now().plusDays(1), "requested");
         String jsonEventExpected = objectMapper.writeValueAsString(dtoExpected);
 
         this.mockMvc.perform(post(urlPath())
@@ -71,10 +71,10 @@ class EventControllerTest {
     @Test
     void putEvent_shouldReturnUpdatedEvent_fromSentEvent() throws Exception {
         String eventId = "1";
-        EventDto dtoPut = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
+        EventDto dtoPut = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1), "requested");
         String jsonEventPut = objectMapper.writeValueAsString(dtoPut);
 
-        EventDto dtoExpected = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(2));
+        EventDto dtoExpected = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(2), "requested");
         String jsonEventExpected = objectMapper.writeValueAsString(dtoExpected);
 
         this.mockMvc.perform(put(urlPath())
@@ -88,7 +88,7 @@ class EventControllerTest {
     void deleteEvent_shouldReturnDeletedEvent_fromEventId() throws Exception {
         String eventId = "1";
 
-        EventDto dtoExpected = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1));
+        EventDto dtoExpected = new EventDto("1", eventId, LocalDate.now(), LocalDate.now().plusDays(1), "requested");
         String jsonEventExpected = objectMapper.writeValueAsString(dtoExpected);
 
         this.mockMvc.perform(delete(urlPath("/1")))
