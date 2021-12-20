@@ -128,29 +128,21 @@ body {
     background-color: var(--color-secondary-background-dark);
 }
 
-.icon-delete {
-    background-color: var(--color-primary-background);
-    color: var(--color-secondary-font);
-    width: 25px;
-    height: 25px;
-    font-size: large;
-
-    border-radius: 50%;
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    display: none;
-
+.trash-event {
+    color: var(--color-primary-background);
+    opacity: 0;
     outline: none;
     cursor: pointer;
+    font-size: larger;
 }
 
-.icon-delete:hover {
-    background-color: var(--color-primary-background-dark);
+.trash-event:hover {
+    color: var(--color-primary-background-dark);
 }
 
-.icon-delete.selected {
-    display: inline;
+.trash-event.selected {
+    transition: all ease-in-out .3s;
+    opacity: 1;
 }
 
 

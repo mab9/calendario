@@ -23,12 +23,11 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
 
     const fromInputElement = dateProjector(item.from);
     const toInputElement  = dateProjector(item.to);
-    const stateElement = dom(` <div> State: <strong> ${valueOf(item.state)} </strong></div>`);
+    const stateElement = dom(`<div> State: <strong> ${valueOf(item.state)} </strong></div>`);
 
-    const deleteElement = document.createElement("button");
+    const trash = dom('<i class="trash-event fas fa-trash-alt"></i>');
+    const deleteElement = trash.children[0];
     deleteElement.onclick = _ => masterController.removeItem(item);
-    deleteElement.classList = "icon-delete";
-    deleteElement.innerText = "x";
 
     event.appendChild(fromInputElement);
     event.appendChild(toInputElement);
