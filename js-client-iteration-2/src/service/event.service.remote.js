@@ -1,6 +1,7 @@
 import "./service.doc.js"
 import {toEvent, toJson } from './jsonToModel.js';
 import {client} from '../base/rest/restClient.js';
+import {valueOf} from '../base/presentationModel/presentationModel.js';
 
 export {vakansieService}
 
@@ -22,13 +23,20 @@ const vakansieService = URL => {
         .catch(err => console.error(err));
     }
 
+    const removeEvent = event => {
+        client(URL + '/' + valueOf(event.id), 'DELETE')
+        .then(json => console.info(json))
+        .catch(err => console.error(err));
+    }
+
     /**
      * Concrete factory for local {@link VakansieService} functions.
      * @constructor
      * @returns {VakansieService}
      */
     return {
-        loadeEvents: loadeEvents,
+        loadeEvents : loadeEvents,
         createEvent : createEvent,
+        removeEvent : removeEvent,
     }
 };

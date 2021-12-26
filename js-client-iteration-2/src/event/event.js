@@ -79,6 +79,12 @@ const MasterController = () => {
         setValueOf(daysLeft)(valueOf(availableDays) - valueOf(totalEventDays));
     }
 
+    eventListCtrl.onModelRemove(item => {
+        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
+        vakansieService(URL).removeEvent(item);
+        updateAvailableDays();
+    })
+
     /**
      * @returns {MasterController} Event Controller
      */
