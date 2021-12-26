@@ -29,6 +29,14 @@ const vakansieService = URL => {
         .catch(err => console.error(err));
     }
 
+    const updateEvent = event => callback => {
+        const data = toJson(event);
+        data['userId'] = 1; // mocked id
+        client(URL, 'PUT', data)
+        .then(json => callback(toEvent(json)))
+        .catch(err => console.error(err));
+    }
+
     /**
      * Concrete factory for local {@link VakansieService} functions.
      * @constructor
@@ -38,5 +46,6 @@ const vakansieService = URL => {
         loadeEvents : loadeEvents,
         createEvent : createEvent,
         removeEvent : removeEvent,
+        updateEvent : updateEvent,
     }
 };

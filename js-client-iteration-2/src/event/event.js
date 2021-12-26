@@ -69,11 +69,20 @@ const MasterController = () => {
             setValueOf(newItem.id)(valueOf(event.id))
         })
 
-        onValueChange(newItem.from)(_ => updateAvailableDays());
-        onValueChange(newItem.to)(_ => updateAvailableDays());
+        onValueChange(newItem.from)(_ => updateModel(newItem));
+        onValueChange(newItem.to)(_ => updateModel(newItem));
     }
 
-    const updateAvailableDays = () => {
+    const updateModel = model => {
+        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
+        vakansieService(URL).updateEvent(model)(event => {
+            // todo keep track of possible lost changes...
+            console.info("event was updated")
+        })
+        updateDaysLeft();
+    }
+
+    const updateDaysLeft = () => {
         setValueOf(totalEventDays)(0);
         eventListCtrl.forEach(event => setValueOf(totalEventDays)(valueOf(totalEventDays) + event.count()));
         setValueOf(daysLeft)(valueOf(availableDays) - valueOf(totalEventDays));
@@ -82,7 +91,7 @@ const MasterController = () => {
     eventListCtrl.onModelRemove(item => {
         const URL = `http://${springServerName}:${springServerPort}${restPath}`;
         vakansieService(URL).removeEvent(item);
-        updateAvailableDays();
+        updateDaysLeft();
     })
 
     /**
