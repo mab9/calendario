@@ -1,12 +1,16 @@
-import {
-    EmptyEvent,
-    EventView,
-    MasterController,
-    SelectionController
-} from './event.js';
+import {EmptyEvent, EventView, OverView, MasterController, SelectionController} from './event.js';
 import {Suite} from "../base/test/test.js";
+import {config, env} from '../../config.js';
 
 const eventSuite = Suite("Event");
+
+config.environment = env.LOCAL;
+// declare for service controller. Remove dependency if possible...
+window.springServerName = 'test-runner.ch';
+window.springServerPort = '9999';
+window.restPath = '';
+
+// todo rework tests according new starter js and add overview tests
 
 eventSuite.add("crud", assert => {
 
@@ -19,24 +23,39 @@ eventSuite.add("crud", assert => {
     // create the views, incl. binding
     EventView(masterController, selectionController, masterContainer);
 
-    const [createBtn, container] = masterContainer.children;
     const elementsPerRow = 1;
     const defaultElements = 0;
 
-    assert.is(container.children.length, 0 * elementsPerRow + defaultElements);
+    assert.is(masterContainer.children.length, 0 * elementsPerRow + defaultElements);
 
     masterController.addItem(EmptyEvent());
-    assert.is(container.children.length, 1 * elementsPerRow + defaultElements);
+    assert.is(masterContainer.children.length, 1 * elementsPerRow + defaultElements);
 
     masterController.addItem(EmptyEvent());
-    assert.is(container.children.length, 2 * elementsPerRow + defaultElements);
+    assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
 
-    createBtn.click();
-    assert.is(container.children.length, 3 * elementsPerRow + defaultElements);
+    masterController.createItem();
+    assert.is(masterContainer.children.length, 3 * elementsPerRow + defaultElements);
 
-    const firstDeleteButton = container.querySelector('.icon-delete')
+    const firstDeleteButton = masterContainer.querySelector('.trash-event')
     firstDeleteButton.click();
-    assert.is(container.children.length, 2 * elementsPerRow + defaultElements);
+    assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
+});
+
+eventSuite.add("overview", assert => {
+
+    // setup
+    const masterContainer = document.createElement("div");
+
+    const masterController = MasterController();
+    const selectionController = SelectionController();
+
+    // create the views, incl. binding
+    OverView(masterController, selectionController, masterContainer);
+
+    const elementsPerRow = 1;
+    const defaultElements = 0;
+
 });
 
 eventSuite.run();
