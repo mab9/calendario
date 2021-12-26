@@ -23,7 +23,7 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
 
     const fromInputElement = dateProjector(item.from);
     const toInputElement  = dateProjector(item.to);
-    const stateElement = dom(`<div> State: <strong> ${valueOf(item.state)} </strong></div>`);
+    const stateElement = dom(`<div> State <strong> ${valueOf(item.state)} </strong></div>`);
 
     const trash = dom('<i class="trash-event fas fa-trash-alt"></i>');
     const deleteElement = trash.children[0];

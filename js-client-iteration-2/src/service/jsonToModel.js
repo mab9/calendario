@@ -7,7 +7,9 @@ const toEvent = jsonEvent => {
 
     const emptyEvent = EmptyEvent();
 
-    //setValueOf(emptyEvent.id)(jsonEvent.id)
+    if (jsonEvent['id']) {
+        setValueOf(emptyEvent.id)(jsonEvent.id)
+    }
     setValueOf(emptyEvent.from)(jsonEvent.from)
     setValueOf(emptyEvent.to)(jsonEvent.to)
     setValueOf(emptyEvent.state)(jsonEvent.state)

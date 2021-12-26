@@ -73,7 +73,7 @@ const setHoverOf = attribute => value => attribute.getObs(HOVER).setValue(value)
 
 const expressionMaker = attribute => fnc => attributeType => {
     isFunction(fnc)
-        ? attribute.getObs(attributeType).onChange(value => fnc(value))
+        ? attribute.getObs(attributeType).onChange((newValue, oldValue) => fnc(newValue, oldValue))
         : attribute.getObs(attributeType).onChange(_ => fnc())
 }
 

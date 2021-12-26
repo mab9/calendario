@@ -18,10 +18,7 @@ const vakansieService = URL => {
     const createEvent = event => callback => {
         const data = toJson(event);
         client(URL, 'POST', data)
-        .then(json => {
-            const eventAttributes = json.map(item => toEvent(item))
-            callback(eventAttributes);
-        })
+        .then(json => callback(toEvent(json)))
         .catch(err => console.error(err));
     }
 

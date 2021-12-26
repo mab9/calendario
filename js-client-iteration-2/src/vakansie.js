@@ -2,6 +2,7 @@ import {dom} from "./base/church/dom.js";
 import {translationService} from "./base/service/translation.service.js";
 import {
     EventView,
+    OverView,
     MasterController,
     SelectionController
 } from "./event/event.js";
@@ -26,17 +27,27 @@ const start = (appRootId, events) => {
                 <DIV class="topnav-header"></DIV>
                 <A>Vakansie</A>
             </NAV>
-            <DIV id="content"></div>
+            <DIV id="content">
+                <button class="plus-btn">+</button>
+                <div class="overview"></div>
+                <div class="events"></div>
+            </div>
         </div>`
     );
+
 
 
     const masterController = MasterController();
     const selectionController = SelectionController();
     const content = mainContainer.querySelector("#content");
 
+    const [createBtn, overViewContainer, eventContainer] = content.children;
 
-    EventView(masterController, selectionController, content);
+
+    OverView(masterController, selectionController, overViewContainer);
+    EventView(masterController, selectionController, eventContainer);
+
+    createBtn.onclick = () => masterController.createItem();
 
     events.forEach(item => masterController.addItem(item));
     root.replaceWith(mainContainer); // why replace???
