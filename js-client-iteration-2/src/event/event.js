@@ -60,7 +60,6 @@ const MasterController = () => {
 
     const createItem = () => {
         const newItem = EmptyEvent();
-        eventListCtrl.addModel(newItem);
 
         const URL = `http://${springServerName}:${springServerPort}${restPath}`;
         vakansieService(URL).createEvent(newItem)(event => {
@@ -69,8 +68,14 @@ const MasterController = () => {
             setValueOf(newItem.id)(valueOf(event.id))
         })
 
-        onValueChange(newItem.from)(_ => updateModel(newItem));
-        onValueChange(newItem.to)(_ => updateModel(newItem));
+        processNewModel(newItem);
+    }
+
+    const processNewModel = model => {
+        eventListCtrl.addModel(model);
+        onValueChange(model.from)(_ => updateModel(model));
+        onValueChange(model.to)(_ => updateModel(model));
+        updateDaysLeft();
     }
 
     const updateModel = model => {
@@ -105,6 +110,7 @@ const MasterController = () => {
         createItem: createItem,
         count: eventListCtrl.size,
         getDaysLeft: () => daysLeft,
+        processNewModel: processNewModel,
     }
 }
 

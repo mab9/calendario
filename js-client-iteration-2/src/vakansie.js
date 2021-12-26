@@ -49,6 +49,6 @@ const start = (appRootId, events) => {
 
     createBtn.onclick = () => masterController.createItem();
 
-    events.forEach(item => masterController.addItem(item));
+    events.forEach(item => masterController.processNewModel(item));
     root.replaceWith(mainContainer); // why replace???
 }
