@@ -65,27 +65,39 @@ git clone https://github.com/mab9/calendario.git
 <br>
 
 
-### 2 iteration - development strategy, TDD, local
+### 2 iteration - development strategy, TDD, local and remote
 
 Apply test and CSS, local development
 
 - describe test suite
 - describe local starter and platform config
+- remote starter
 
-### 3 iteration - generalize projector pattern, CSS, what so ever.
+### x iteration - generalize projector pattern, CSS, what so ever.
 
 Generalize projector, so that it may also be used with other models
 
 Webcl week 6
 
-### 4 iteration - molds - selection molds
+### x iteration - refactorings - i18n - object override
+
+
+### x iteration - molds - selection molds
 
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
 
 Webcl week 14
 
+### x iteration - prod preparations
 
+- obfuscating? - yes or no...
+- minifying
+- bundling js code
 
+### x iteration - core js code extraction
+
+Remove all not necessary code. Build a KISS framework without all not needed
+church code. 
 
 ## Contributing to Vakansie
 
