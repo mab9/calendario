@@ -38,7 +38,7 @@ const vakansieService = URL => {
     }
 
     /**
-     * Concrete factory for local {@link VakansieService} functions.
+     * Concrete factory for remote {@link VakansieService} functions.
      * @constructor
      * @returns {VakansieService}
      */

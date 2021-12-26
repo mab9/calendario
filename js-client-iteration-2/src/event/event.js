@@ -1,16 +1,10 @@
 import {dom} from "../base/church/dom.js";
 import {Observable, ObservableList} from '../base/observable/observable.js';
-import {
-    Attribute,
-    onValueChange,
-    setLabelOf,
-    setValueOf,
-    valueOf,
-} from '../base/presentationModel/presentationModel.js';
+import {Attribute, onValueChange, setLabelOf, setValueOf, valueOf,} from '../base/presentationModel/presentationModel.js';
 import {eventListItemProjector} from './event.projector.js';
-import {vakansieService} from '../service/event.service.remote.js';
 import {appendReplacing} from '../base/church/appends.js';
 import {isFunction} from '../base/church/isfnc.js';
+import {ServiceController} from '../service/service.controller.js';
 
 export {MasterController, EventView, OverView, SelectionController, EmptyEvent};
 
@@ -55,14 +49,14 @@ const MasterController = () => {
     const availableDays = Attribute(20); // fetch value from remote
     const totalEventDays = Attribute(0);
     const daysLeft = Attribute(valueOf(availableDays));
+    const eventService = ServiceController().vakansieService;
 
     const eventListCtrl = ListController();  // observable array of events, this state is private
 
     const createItem = () => {
         const newItem = EmptyEvent();
 
-        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
-        vakansieService(URL).createEvent(newItem)(event => {
+        eventService.createEvent(newItem)(event => {
             // glue created event to new Item
             // todo keep track of possible lost changes...
             setValueOf(newItem.id)(valueOf(event.id))
@@ -79,8 +73,7 @@ const MasterController = () => {
     }
 
     const updateModel = model => {
-        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
-        vakansieService(URL).updateEvent(model)(event => {
+        eventService.updateEvent(model)(event => {
             // todo keep track of possible lost changes...
             console.info("event was updated")
         })
@@ -94,8 +87,7 @@ const MasterController = () => {
     }
 
     eventListCtrl.onModelRemove(item => {
-        const URL = `http://${springServerName}:${springServerPort}${restPath}`;
-        vakansieService(URL).removeEvent(item);
+        eventService.removeEvent(item);
         updateDaysLeft();
     })
 

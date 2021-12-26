@@ -1,13 +1,7 @@
-import {dom} from "./base/church/dom.js";
-import {translationService} from "./base/service/translation.service.js";
-import {
-    EventView,
-    OverView,
-    MasterController,
-    SelectionController
-} from "./event/event.js";
-
-export {start} ;
+import {ServiceController} from './src/service/service.controller.js';
+import {translationService} from './src/base/service/translation.service.js';
+import {dom} from './src/base/church/dom.js';
+import {EventView, MasterController, OverView, SelectionController} from './src/event/event.js';
 
 /**
  * @param {string} appRootId
@@ -35,14 +29,11 @@ const start = (appRootId, events) => {
         </div>`
     );
 
-
-
     const masterController = MasterController();
     const selectionController = SelectionController();
     const content = mainContainer.querySelector("#content");
 
     const [createBtn, overViewContainer, eventContainer] = content.children;
-
 
     OverView(masterController, selectionController, overViewContainer);
     EventView(masterController, selectionController, eventContainer);
@@ -52,3 +43,7 @@ const start = (appRootId, events) => {
     events.forEach(item => masterController.processNewModel(item));
     root.replaceWith(mainContainer); // why replace???
 }
+
+const appRootId = window.appRootId;
+
+ServiceController().vakansieService.loadeEvents(events => start(appRootId, events));
