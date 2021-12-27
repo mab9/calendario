@@ -77,7 +77,8 @@ Apply test and CSS, local development
 
 Generalize projector, so that it may also be used with other models?
 
-Webcl week 6
+CSS may be written in a dedicated .css file. There is the possibility to write the CSS code directly within the projector itself, where the structure of the projector is defined... 
+
 
 
 ### x iteration - molds - selection molds
