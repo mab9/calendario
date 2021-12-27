@@ -73,13 +73,11 @@ Apply test and CSS, local development
 - describe local starter and platform config
 - remote starter
 
-### x iteration - generalize projector pattern, CSS, what so ever.
+### 3 iteration - refactor projector, projector CSS, whatsoever - i18n - object override, whatsoever
 
-Generalize projector, so that it may also be used with other models
+Generalize projector, so that it may also be used with other models?
 
 Webcl week 6
-
-### x iteration - refactorings - i18n - object override
 
 
 ### x iteration - molds - selection molds
