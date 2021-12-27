@@ -77,9 +77,16 @@ Apply test and CSS, local development
 
 Generalize projector, so that it may also be used with other models?
 
-CSS may be written in a dedicated .css file. There is the possibility to write the CSS code directly within the projector itself, where the structure of the projector is defined... 
+#### CSS reworks and improvements
+CSS may be written in a dedicated .css file. There is the possibility <br> to write the CSS code directly within the projector itself, where the structure of the projector is defined...  
 
+The advantage of writing and gluing the structural CSS code next to where it belongs is,<br> to code with loose coupling. The projector may be reused without opening and touching lots of files.   
 
+![css-in-js.png](resources/img.png)
+
+![css-in-js-glue.png](resources/img_1.png)
+
+In my example, I didn't define the structure next to the projector itself. For the moment it is OK to have it separated within the projector.css file. 
 
 ### x iteration - molds - selection molds
 
