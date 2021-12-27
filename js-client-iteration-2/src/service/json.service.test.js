@@ -1,5 +1,5 @@
 import {Suite} from "../base/test/test.js";
-import {toEvent} from "./jsonToModel.js";
+import {toEvent} from "./json.service.js";
 import {valueOf} from '../base/presentationModel/presentationModel.js';
 
 const jsonToModelSuite = Suite("jsonToModel");

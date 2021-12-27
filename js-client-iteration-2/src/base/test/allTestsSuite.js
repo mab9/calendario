@@ -10,9 +10,8 @@ import '../church/rock.test.js'
 
 import '../observable/observable.test.js'
 
-import '../service/local.service.test.js';
 import '../service/translation.service.test.js'
 
 
 import '../../event/event.test.js'
-import '../../service/jsonToModel.test.js'
+import '../../service/json.service.test.js'

@@ -1,5 +1,5 @@
 import "./service.doc.js"
-import {toEvent, toJson } from './jsonToModel.js';
+import {toEvent, toJson } from './json.service.js';
 import {client} from '../base/rest/restClient.js';
 import {valueOf} from '../base/presentationModel/presentationModel.js';
 

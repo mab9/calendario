@@ -1,5 +1,5 @@
 import "./service.doc.js"
-import {toEvent} from './jsonToModel.js';
+import {toEvent} from './json.service.js';
 import {setValueOf} from '../base/presentationModel/presentationModel.js';
 
 export {vakansieService}
