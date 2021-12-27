@@ -117,10 +117,13 @@ const OverView = (masterController, selectionController, rootElement) => {
     const render = () => {
         const view = dom(`
             <div class="card">
-                <span>Year           <strong>2021</strong></span>
+                <span>Year           <strong></strong></span>
                 <span>Available days <strong>${valueOf(masterController.getDaysLeft())}</strong></span>
                 <span>Events         <strong>${masterController.count()}</strong></span>
             </div>`);
+
+        const first = view.querySelector('strong');
+        first.innerText = new Date().getFullYear();
 
         appendReplacing(rootElement)(view)
     }

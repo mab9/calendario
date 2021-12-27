@@ -57,7 +57,8 @@ eventSuite.add("overview", assert => {
 
     const [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.indexOf(2021) > 0)
+    assert.true(year.innerHTML.indexOf(new Date().getFullYear()) > 0)
+
 });
 
 eventSuite.run();
