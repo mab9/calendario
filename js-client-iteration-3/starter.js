@@ -1,7 +1,8 @@
 import {ServiceController} from './src/service/service.controller.js';
 import {translationService} from './src/base/service/translation.service.js';
 import {dom} from './src/base/church/dom.js';
-import {EventView, MasterController, OverView, SelectionController} from './src/event/event.js';
+import {EventView, MasterController, OverView} from './src/event/event.js';
+import {SelectionController} from './src/base/controller/controller.js';
 
 /**
  * @param {string} appRootId
@@ -30,7 +31,7 @@ const start = (appRootId, events) => {
     );
 
     const masterController = MasterController();
-    const selectionController = SelectionController();
+    const selectionController = SelectionController("NoItem");
     const content = mainContainer.querySelector("#content");
 
     const [createBtn, overViewContainer, eventContainer] = content.children;

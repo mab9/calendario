@@ -34,10 +34,10 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
     event.appendChild(stateElement);
     event.appendChild(deleteElement);
 
-    eventElement.onmouseover = _ => selectionController.setSelectedItem(item);
+    eventElement.onmouseover = _ => selectionController.setSelectedModel(item);
     eventElement.onmouseleave = _ => selectionController.clearSelection();
 
-    selectionController.onItemSelected(selected =>
+    selectionController.onModelSelected(selected =>
         selected === item
           ? deleteElement.classList.add("selected")
           : deleteElement.classList.remove("selected")

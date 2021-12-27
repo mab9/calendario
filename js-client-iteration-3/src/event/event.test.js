@@ -1,7 +1,8 @@
-import {EmptyEvent, EventView, OverView, MasterController, SelectionController} from './event.js';
+import {EmptyEvent, EventView, OverView, MasterController} from './event.js';
 import {Suite} from "../base/test/test.js";
 import {config, env} from '../../config.js';
 import {setValueOf} from '../base/presentationModel/presentationModel.js';
+import {SelectionController} from '../base/controller/controller.js';
 
 const eventSuite = Suite("Event");
 

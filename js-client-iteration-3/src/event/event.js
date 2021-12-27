@@ -1,12 +1,11 @@
 import {dom} from "../base/church/dom.js";
-import {Observable, ObservableList} from '../base/observable/observable.js';
 import {Attribute, onValueChange, setLabelOf, setValueOf, valueOf,} from '../base/presentationModel/presentationModel.js';
 import {eventListItemProjector} from './event.projector.js';
 import {appendReplacing} from '../base/church/appends.js';
-import {isFunction} from '../base/church/isfnc.js';
 import {ServiceController} from '../service/service.controller.js';
+import {ListController} from '../base/controller/controller.js';
 
-export {MasterController, EventView, OverView, SelectionController, EmptyEvent};
+export {MasterController, EventView, OverView, EmptyEvent};
 
 const EmptyEvent = () => {                               // facade
     const id = Attribute(''); // empty id
@@ -142,51 +141,8 @@ const OverView = (masterController, selectionController, rootElement) => {
  * @constructor
  */
 const EventView = (masterController, selectionController, rootElement) => {
-    const render = item => eventListItemProjector(masterController,
-        selectionController, rootElement, item);
+    const render = item => eventListItemProjector(masterController, selectionController, rootElement, item);
 
     // binding
     masterController.onItemAdd(render);
-};
-
-const SelectionController = () => {
-
-    const selectedItem = Observable("NoItem");
-
-    /**
-     * @returns {SelectionController} Event Selection Controller
-     */
-    return {
-        setSelectedItem: selectedItem.setValue,
-        getSelectedItem: selectedItem.getValue,
-        onItemSelected: selectedItem.onChange,
-        clearSelection: () => selectedItem.setValue("NoItem"),
-    }
-};
-
-const ListController = () => {
-
-    const innerList = [];                        // internal use only
-    const listModel = ObservableList(innerList); // observable array of models, this state is private
-
-    const findById = modelId => innerList.find(
-        model => valueOf(model.id) === modelId);
-
-    const expressionMaker = fnc => callFnc => {
-        isFunction(fnc)
-            ? callFnc(fnc)
-            : callFnc(_ => fnc());
-    }
-
-    return {
-        addModel: model => listModel.add(model),
-        findById,
-        removeModel: listModel.del,
-        onModelAdd: fnc => expressionMaker(fnc)(listModel.onAdd),
-        onModelRemove: fnc => expressionMaker(fnc)(listModel.onDel),
-        size: () => listModel.count(),
-        forEach: fnc => innerList.forEach(item => fnc(item)),
-        reset: () => innerList.splice(0, innerList.length), // todo rework so that listeners get triggered -> getAll for each removeModel?
-        pop: () => innerList[innerList.length - 1],
-    }
 };
