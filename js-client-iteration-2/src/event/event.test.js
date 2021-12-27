@@ -53,9 +53,11 @@ eventSuite.add("overview", assert => {
     // create the views, incl. binding
     OverView(masterController, selectionController, masterContainer);
 
-    const elementsPerRow = 1;
-    const defaultElements = 0;
+    assert.is(masterContainer.children.length, 1);
 
+    const [year, availableDays, eventCounter] = masterContainer.children[0].children;
+
+    assert.true(year.innerHTML.indexOf(2021) > 0)
 });
 
 eventSuite.run();

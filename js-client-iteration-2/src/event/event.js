@@ -125,10 +125,11 @@ const OverView = (masterController, selectionController, rootElement) => {
         appendReplacing(rootElement)(view)
     }
 
-    // todo rework, render will be invoked multiple times ...
     masterController.onItemAdd(_ => render())
     masterController.onItemRemove(_ => render())
     onValueChange(masterController.getDaysLeft())(_ => render())
+
+    render();
 }
 
 /**
