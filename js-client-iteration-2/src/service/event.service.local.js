@@ -24,7 +24,7 @@ const vakansieService = () => {
     }
 
     const removeEvent = event => {
-        console.info(event)
+        // do nothing - not specified
     }
 
     const updateEvent = event => callback => {

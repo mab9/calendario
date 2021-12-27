@@ -1,6 +1,7 @@
 import {EmptyEvent, EventView, OverView, MasterController, SelectionController} from './event.js';
 import {Suite} from "../base/test/test.js";
 import {config, env} from '../../config.js';
+import {setValueOf} from '../base/presentationModel/presentationModel.js';
 
 const eventSuite = Suite("Event");
 
@@ -55,9 +56,50 @@ eventSuite.add("overview", assert => {
 
     assert.is(masterContainer.children.length, 1);
 
-    const [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    let [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.indexOf(new Date().getFullYear()) > 0)
+    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes('Events         <strong>0</strong>'));
+
+    masterController.createItem();
+    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+
+    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes('Events         <strong>1</strong>'));
+
+
+    masterController.createItem();
+    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+
+    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes('Events         <strong>2</strong>'));
+
+
+    // Use on change listener (almost) at the end of the test, to avoid having side effects on following tests.
+    // Create reference to model, to be able to clean up afterwards.
+    let eventRef;
+    masterController.onItemAdd(model => {
+        eventRef = model;
+        setValueOf(model.from)('2021-12-01');
+        setValueOf(model.to)('2021-12-03');
+    });
+
+    masterController.createItem();
+    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+
+    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes('Available days <strong>18</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes('Events         <strong>3</strong>'));
+
+    masterController.removeItem(eventRef);
+    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+
+    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes('Events         <strong>2</strong>'));
 
 });
 
