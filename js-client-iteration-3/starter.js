@@ -21,6 +21,12 @@ const start = (appRootId, events) => {
             <NAV class="topnav">
                 <DIV class="topnav-header"></DIV>
                 <A>Vakansie</A>
+
+                <div class="topnav-languages">
+                    <A>de</A>
+                    <A>fr</A>
+                    <A>en</A>
+                </div>
             </NAV>
             <DIV id="content">
                 <button class="plus-btn">+</button>

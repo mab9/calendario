@@ -8,8 +8,8 @@
     /* Colors wood / natural colors https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=8D6E63&secondary.color=37464f&primary.text.color=ffffff&secondary.text.color=ffffff */
 
     --color-primary-font: #ffffff;
-    --color-primary-font-light: #000000;
-    --color-primary-font-dark: #ffffff;
+    --color-primary-font-light: #ffffff;
+    --color-primary-font-dark: #000000;
     --color-primary-background: #8c6d62;
     --color-primary-background-light: #be9c91;
     --color-primary-background-dark: #5e4238;
@@ -68,6 +68,18 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+
+.topnav-languages {
+    float: right;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.topnav-languages > a:hover {
+    color: var(--color-primary-font-dark) ;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
 }
 
 .plus-btn {
