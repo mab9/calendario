@@ -1,5 +1,6 @@
 import {setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
 import {dom} from '../base/church/dom.js';
+import {translationService} from '../base/service/translation.service.js';
 
 export {eventListItemProjector}
 
@@ -48,6 +49,8 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
         if (removedItem !== item) {
             return;
         }
+        // discharge listener before duplicating...
+        translationService.dischargeListener(card);
         rootElement.removeChild(card);
         selectionController.clearSelection();
         removeMe();

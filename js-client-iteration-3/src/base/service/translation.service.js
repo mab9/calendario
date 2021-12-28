@@ -1,10 +1,13 @@
 import {config} from "../../../config.js";
 import {doIf} from "../church/maybe.js";
-import {Attribute, onValueChange, valueOf, setValueOf} from '../presentationModel/presentationModel.js';
+import {Attribute, onValueChange, valueOf} from '../presentationModel/presentationModel.js';
+import {ObservableI18n} from '../observable/observable.js';
 
 export {i18n, I18N_CURRENT_LANG} // See export at the bottom of the file!
 
 const I18N_CURRENT_LANG = 'TRANSLATION_CURRENT_LANGUAGE';
+
+let elementIdCounter = 0;
 
 /**
  * @typedef i18n
@@ -24,13 +27,16 @@ const i18n = (key) => (destination) => {
             : destination.innerText = translation;
     }
 
-    translationService.translate(key, callback);
+    // const id = node.dataset.i18nId;  // access dataset value
+    // add element id to be able to discharge the observable on render.
+    destination.dataset.i18nId = elementIdCounter;
+    translationService.translate(key, callback, elementIdCounter++); // 0 is at the moment not needed. would be another strategy to test discharging...
 };
 
 const TranslationService = () => {
     let isInitialized = false;
     let langTranslations = {};
-    const isLangLoaded = Attribute(false);
+    const isLangLoaded = ObservableI18n(false);
 
     const currentLang = Attribute( // set default language
         localStorage.getItem(I18N_CURRENT_LANG)
@@ -39,13 +45,13 @@ const TranslationService = () => {
 
     const loadCurrentLang = () => {
         const lang = valueOf(currentLang);
-        setValueOf(isLangLoaded)(false);
+        isLangLoaded.setValue(false);
 
         fetch("src/i18n/" + lang + ".json")
         .then(response => response.json())
         .then(json => {
             langTranslations = json;
-            setValueOf(isLangLoaded)(true);
+            isLangLoaded.setValue(true);
         })
     }
 
@@ -73,11 +79,18 @@ const TranslationService = () => {
     const resolveCallback = (callback, languageReady, key) => doIf(languageReady)(callback(resolveKey(key)));
 
     // Translate languages without page refresh
-    const translate = (key, callback) => {
+    const translate = (key, callback, elementId) => {
+        // discharge listener before duplicating...
+        isLangLoaded.onChangeI18n(value => resolveCallback(callback, value, key), elementId);
+        resolveCallback(callback, isLangLoaded.getValue(), key);
+    }
 
-        // todo dischanrge observable before adding a new one for the key and element.
-        onValueChange(isLangLoaded)(value => resolveCallback(callback, value, key));
-        resolveCallback(callback, valueOf(isLangLoaded), key);
+    const dischargeListener = element => {
+        const nodes = element.querySelectorAll('[data-i18n-id]');
+        nodes.forEach(node => {
+            const key = node.dataset.i18nId;
+            isLangLoaded.discharge(key);
+        })
     }
 
     // is used to prevent to load the current lang
@@ -96,6 +109,7 @@ const TranslationService = () => {
         init: init,
         isLangLoaded: isLangLoaded,
         currentLang: currentLang,
+        dischargeListener: dischargeListener,
     })
 }
 

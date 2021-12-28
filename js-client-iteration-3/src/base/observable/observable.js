@@ -1,9 +1,39 @@
-export {Observable, ObservableList}
+export {Observable, ObservableI18n, ObservableList}
 
 /**
- * @type    {object}
- * @typedef {{getValue: (function(): *), onChange: onChange, setValue: setValue}} Observable
+ *  Observable object was not extended, to avoid having tight coupling.
  */
+const ObservableI18n = value => {
+    const listeners = new Map();
+
+    /**
+     * @param value
+     * @return {Observable}
+     * @constructor
+     */
+    return {
+        discharge : id => {
+            listeners.delete(id)
+            //console.info("discharged id " + id + " listeners size " + listeners.size)
+        },
+        onChangeI18n: (callback, elementId) => {
+            //console.info("add listener with id", elementId)
+            listeners.set("" + elementId, callback);
+            if (listeners.size > 50) {
+                console.debug("log listener count suspicious: ", listeners.size);
+            }
+        },
+        getValue: () => value,
+        setValue: newValue => {
+            if (value === newValue) {
+                return;
+            }
+            const oldValue = value;
+            value = newValue;
+            listeners.forEach(callback => callback(value, oldValue));
+        }
+    }
+};
 
 /**
  * @param value
@@ -16,7 +46,7 @@ const Observable = value => {
         onChange: callback => {
             listeners.push(callback);
             if (listeners.length > 50) {
-                console.debug("log listener count suspicious: ",listeners.length);
+                console.debug("log listener count suspicious: ", listeners.length);
             }
             //callback(value, value);  // I don't like on change events that are executed right away
         },
@@ -42,7 +72,7 @@ const ObservableList = list => {
             removeAt(array)(i);
         }
     };
-        const listRemoveItem = removeItem(list);
+    const listRemoveItem = removeItem(list);
     const delListenersRemove = removeAt(delListeners);
     return {
         onAdd: listener => addListeners.push(listener),

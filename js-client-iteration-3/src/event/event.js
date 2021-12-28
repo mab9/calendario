@@ -74,7 +74,6 @@ const MasterController = () => {
     const updateModel = model => {
         eventService.updateEvent(model)(event => {
             // todo keep track of possible lost changes...
-            console.info("event was updated")
         })
         updateDaysLeft();
     }
@@ -113,25 +112,28 @@ const MasterController = () => {
  */
 const OverView = (masterController, selectionController, rootElement) => {
 
-    const render = () => {
-        const view = dom(`
+    const view = dom(`
             <div class="card">
                 <span><span data-i18n="view.event.year"></span>          <strong></strong></span>
-                <span><span data-i18n="view.event.availableDays"></span> <strong>${valueOf(masterController.getDaysLeft())}</strong></span>
-                <span><span data-i18n="view.event.events"></span>        <strong>${masterController.count()}</strong></span>
+                <span><span data-i18n="view.event.availableDays"></span> <strong></strong></span>
+                <span><span data-i18n="view.event.events"></span>        <strong></strong></span>
             </div>`);
 
-        const first = view.querySelector('strong');
-        first.innerText = new Date().getFullYear();
+    const placeHolders = view.querySelectorAll('strong');
 
-        appendReplacing(rootElement)(view)
+    placeHolders[0].innerText = new Date().getFullYear();
+
+    const updateValues = () => {
+        placeHolders[1].innerText = valueOf(masterController.getDaysLeft());
+        placeHolders[2].innerText = masterController.count();
     }
 
-    masterController.onItemAdd(_ => render())
-    masterController.onItemRemove(_ => render())
-    onValueChange(masterController.getDaysLeft())(_ => render())
+    masterController.onItemAdd(_ => updateValues())
+    masterController.onItemRemove(_ => updateValues())
+    onValueChange(masterController.getDaysLeft())(_ => updateValues())
 
-    render();
+    appendReplacing(rootElement)(view)
+    updateValues();
 }
 
 /**
