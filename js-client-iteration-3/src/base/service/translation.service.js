@@ -1,7 +1,6 @@
 import {config} from "../../../config.js";
-import {Observable} from "../observable/observable.js";
 import {doIf} from "../church/maybe.js";
-import {valueOf, Attribute, onValueChange} from '../presentationModel/presentationModel.js';
+import {Attribute, onValueChange, valueOf, setValueOf} from '../presentationModel/presentationModel.js';
 
 export {i18n, I18N_CURRENT_LANG} // See export at the bottom of the file!
 
@@ -31,7 +30,7 @@ const i18n = (key) => (destination) => {
 const TranslationService = () => {
     let isInitialized = false;
     let langTranslations = {};
-    const isLangLoaded = Observable(false);
+    const isLangLoaded = Attribute(false);
 
     const currentLang = Attribute( // set default language
         localStorage.getItem(I18N_CURRENT_LANG)
@@ -40,13 +39,13 @@ const TranslationService = () => {
 
     const loadCurrentLang = () => {
         const lang = valueOf(currentLang);
-        isLangLoaded.setValue(false);
+        setValueOf(isLangLoaded)(false);
 
         fetch("src/i18n/" + lang + ".json")
         .then(response => response.json())
         .then(json => {
             langTranslations = json;
-            isLangLoaded.setValue(true);
+            setValueOf(isLangLoaded)(true);
         })
     }
 
@@ -75,8 +74,8 @@ const TranslationService = () => {
 
     // Translate languages without page refresh
     const translate = (key, callback) => {
-        isLangLoaded.onChange(value => resolveCallback(callback, value, key));
-        resolveCallback(callback, isLangLoaded.getValue(), key);
+        onValueChange(isLangLoaded)(value => resolveCallback(callback, value, key));
+        resolveCallback(callback, valueOf(isLangLoaded), key);
     }
 
     // is used to prevent to load the current lang
