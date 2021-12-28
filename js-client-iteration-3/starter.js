@@ -4,6 +4,8 @@ import {dom} from './src/base/church/dom.js';
 import {EventView, MasterController, OverView} from './src/event/event.js';
 import {SelectionController} from './src/base/controller/controller.js';
 
+import {config} from './config.js';
+
 /**
  * @param {string} appRootId
  * @param {Event[]} events
@@ -22,11 +24,7 @@ const start = (appRootId, events) => {
                 <DIV class="topnav-header"></DIV>
                 <A>Vakansie</A>
 
-                <div class="topnav-languages">
-                    <A>de</A>
-                    <A>fr</A>
-                    <A>en</A>
-                </div>
+                <div class="topnav-languages"></div>
             </NAV>
             <DIV id="content">
                 <button class="plus-btn">+</button>
@@ -39,6 +37,7 @@ const start = (appRootId, events) => {
     const masterController = MasterController();
     const selectionController = SelectionController("NoItem");
     const content = mainContainer.querySelector("#content");
+    const languages = mainContainer.querySelector(".topnav-languages");
 
     const [createBtn, overViewContainer, eventContainer] = content.children;
 
@@ -46,6 +45,14 @@ const start = (appRootId, events) => {
     EventView(masterController, selectionController, eventContainer);
 
     createBtn.onclick = () => masterController.createItem();
+
+    // translations
+    const currentLang = translationService.currentLang;
+    config.languages.forEach(lang => {
+        const langElement = dom(`<a>${lang}</a>`);
+        langElement.children[0].onclick = () => currentLang.setValue(lang); // todo rework dom to avoid invoking children.
+        languages.append(langElement)
+    })
 
     events.forEach(item => masterController.processNewModel(item));
     root.replaceWith(mainContainer); // why replace???

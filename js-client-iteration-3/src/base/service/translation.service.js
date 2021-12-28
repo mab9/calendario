@@ -27,15 +27,12 @@ const i18n = (key) => (destination) => {
     translationService.translate(key, callback);
 };
 
-/**
- * @constructor
- * @returns {TranslationService}
- */
 const TranslationService = () => {
     let isInitialized = false;
     let langTranslations = {};
     const isLangLoaded = Observable(false);
 
+    // todo rework - use attribute
     const currentLang = Observable(
         localStorage.getItem(I18N_CURRENT_LANG)
             ? localStorage.getItem(I18N_CURRENT_LANG)
@@ -78,7 +75,7 @@ const TranslationService = () => {
 
     // Translate languages without page refresh
     const translate = (key, callback) => {
-        isLangLoaded.onChange( value => resolveCallback(callback, value, key));
+        isLangLoaded.onChange(value => resolveCallback(callback, value, key));
         resolveCallback(callback, isLangLoaded.getValue(), key);
     }
 
@@ -89,6 +86,10 @@ const TranslationService = () => {
         loadCurrentLang();
     }
 
+    /**
+     * @constructor
+     * @returns {TranslationService}
+     */
     return Object.freeze({
         translate: translate,
         init: init,
