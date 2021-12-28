@@ -59,24 +59,29 @@ eventSuite.add("overview", assert => {
 
     let [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
-    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
-    assert.true(eventCounter.innerHTML.includes('Events         <strong>0</strong>'));
+    // Test does not define a language and only contains the translation key.
+    const yearHtml = '<span data-i18n="view.event.year">view.event.year</span>          <strong>';
+    const availableDaysHtml = '<span data-i18n="view.event.availableDays">view.event.availableDays</span> <strong>';
+    const eventsHtml = '<span data-i18n="view.event.events">view.event.events</span>        <strong>';
+
+    assert.true(year.innerHTML.includes(yearHtml + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes(eventsHtml + '0</strong>'));
 
     masterController.createItem();
     [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
-    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
-    assert.true(eventCounter.innerHTML.includes('Events         <strong>1</strong>'));
+    assert.true(year.innerHTML.includes(yearHtml + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes(eventsHtml + '1</strong>'));
 
 
     masterController.createItem();
     [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
-    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
-    assert.true(eventCounter.innerHTML.includes('Events         <strong>2</strong>'));
+    assert.true(year.innerHTML.includes(yearHtml + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes(eventsHtml + '2</strong>'));
 
 
     // Use on change listener (almost) at the end of the test, to avoid having side effects on following tests.
@@ -91,17 +96,16 @@ eventSuite.add("overview", assert => {
     masterController.createItem();
     [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
-    assert.true(availableDays.innerHTML.includes('Available days <strong>18</strong>') > 0);
-    assert.true(eventCounter.innerHTML.includes('Events         <strong>3</strong>'));
+    assert.true(year.innerHTML.includes(yearHtml + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes(availableDaysHtml + '18</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes(eventsHtml + '3</strong>'));
 
     masterController.removeItem(eventRef);
     [year, availableDays, eventCounter] = masterContainer.children[0].children;
 
-    assert.true(year.innerHTML.includes('Year           <strong>' + new Date().getFullYear() +  '</strong>'));
-    assert.true(availableDays.innerHTML.includes('Available days <strong>20</strong>') > 0);
-    assert.true(eventCounter.innerHTML.includes('Events         <strong>2</strong>'));
-
+    assert.true(year.innerHTML.includes(yearHtml + new Date().getFullYear() +  '</strong>'));
+    assert.true(availableDays.innerHTML.includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(eventCounter.innerHTML.includes(eventsHtml + '2</strong>'));
 });
 
 eventSuite.run();
