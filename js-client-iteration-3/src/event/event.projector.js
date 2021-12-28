@@ -1,8 +1,4 @@
-import {
-    labelOf, onValueChange,
-    setValueOf,
-    valueOf
-} from '../base/presentationModel/presentationModel.js';
+import {setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
 import {dom} from '../base/church/dom.js';
 
 export {eventListItemProjector}
@@ -16,56 +12,51 @@ export {eventListItemProjector}
  */
 const eventListItemProjector = (masterController, selectionController, rootElement, item) => {
 
-    const eventElement = document.createElement("DIV");
-    eventElement.innerHTML = `<div class="card"></div>`;
+    // <span data-i18n="test.dom.title"></span>
+    const eventElement = dom(`
+        <div class="card">
+            <div class="card-date">From <input type="date"></div>
+            <div class="card-date">To<input type="date"></div>
+            <div> State <strong></strong></div>
+            <div><i class="trash-event fas fa-trash-alt"></i></div>
+        </div>
+    `);
 
-    const event = eventElement.children[0];
+    const card = eventElement.children[0];
+    const [from, to, state, trash] = card.children;
 
-    const fromInputElement = dateProjector(item.from);
-    const toInputElement  = dateProjector(item.to);
-    const stateElement = dom(`<div> State <strong> ${valueOf(item.state)} </strong></div>`);
+    // todo next steps:
+    // -> rewrite event projector more simple to have just html code and whats needed at one place
+    // -> add i18n stuff
 
-    const trash = dom('<i class="trash-event fas fa-trash-alt"></i>');
-    const deleteElement = trash.children[0];
-    deleteElement.onclick = _ => masterController.removeItem(item);
+    const fromInput = from.querySelector('input');
+    fromInput.value = valueOf(item.from);
+    fromInput.onchange = () => setValueOf(item.from)(fromInput.value)
 
-    event.appendChild(fromInputElement);
-    event.appendChild(toInputElement);
-    event.appendChild(stateElement);
-    event.appendChild(deleteElement);
+    const toInput = to.querySelector('input');
+    toInput.value = valueOf(item.to);
+    toInput.onchange = () => setValueOf(item.to)(toInput.value)
 
-    eventElement.onmouseover = _ => selectionController.setSelectedModel(item);
-    eventElement.onmouseleave = _ => selectionController.clearSelection();
+    const stateText = state.querySelector('strong');
+    stateText.innerText = valueOf(item.state);
 
-    selectionController.onModelSelected(selected =>
-        selected === item
-          ? deleteElement.classList.add("selected")
-          : deleteElement.classList.remove("selected")
-    );
+    trash.onclick = _ => masterController.removeItem(item);
 
-    // define item.from and to date formatt. either date -> then upadte the binding, or text, update set value.
+    card.onmouseover = _ => selectionController.setSelectedModel(item);
+    card.onmouseleave = _ => selectionController.clearSelection();
+
+    selectionController.onModelSelected(selected => selected === item
+        ? trash.children[0].classList.add("selected")
+        : trash.children[0].classList.remove("selected"))
+
     masterController.onItemRemove((removedItem, removeMe) => {
-        if (removedItem !== item) return;
-        rootElement.removeChild(eventElement);
+        if (removedItem !== item) {
+            return;
+        }
+        rootElement.removeChild(card);
         selectionController.clearSelection();
         removeMe();
     });
 
-    rootElement.prepend(eventElement);
+    rootElement.prepend(card);
 };
-
-const dateProjector = dateAttr => {
-    const element = dom(`
-        <div class="card-date">
-            ${labelOf(dateAttr)}
-            <input type="date" value="${valueOf(dateAttr)}">
-        </div>`
-    );
-
-    applyDateBindings(element.querySelector("input"))(dateAttr);
-    return element;
-};
-
-const applyDateBindings = element => dateAttr => {
-    element.onchange = () => setValueOf(dateAttr)(element.value)
-}
