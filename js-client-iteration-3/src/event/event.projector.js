@@ -12,22 +12,17 @@ export {eventListItemProjector}
  */
 const eventListItemProjector = (masterController, selectionController, rootElement, item) => {
 
-    // <span data-i18n="test.dom.title"></span>
     const eventElement = dom(`
         <div class="card">
-            <div class="card-date">From <input type="date"></div>
-            <div class="card-date">To<input type="date"></div>
-            <div> State <strong></strong></div>
+            <div class="card-date"><span data-i18n="view.event.from"></span> <input type="date"/></div>
+            <div class="card-date"><span data-i18n="view.event.to"></span> <input type="date"></div>
+            <div><span data-i18n="view.event.state"></span> <strong></strong></div>
             <div><i class="trash-event fas fa-trash-alt"></i></div>
         </div>
     `);
 
     const card = eventElement.children[0];
     const [from, to, state, trash] = card.children;
-
-    // todo next steps:
-    // -> rewrite event projector more simple to have just html code and whats needed at one place
-    // -> add i18n stuff
 
     const fromInput = from.querySelector('input');
     fromInput.value = valueOf(item.from);

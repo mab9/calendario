@@ -116,9 +116,9 @@ const OverView = (masterController, selectionController, rootElement) => {
     const render = () => {
         const view = dom(`
             <div class="card">
-                <span>Year           <strong></strong></span>
-                <span>Available days <strong>${valueOf(masterController.getDaysLeft())}</strong></span>
-                <span>Events         <strong>${masterController.count()}</strong></span>
+                <span><span data-i18n="view.event.year"></span>          <strong></strong></span>
+                <span><span data-i18n="view.event.availableDays"></span> <strong>${valueOf(masterController.getDaysLeft())}</strong></span>
+                <span><span data-i18n="view.event.events"></span>        <strong>${masterController.count()}</strong></span>
             </div>`);
 
         const first = view.querySelector('strong');
