@@ -1,6 +1,7 @@
 import {config} from "../../../config.js";
 import {Observable} from "../observable/observable.js";
 import {doIf} from "../church/maybe.js";
+import {valueOf, Attribute, onValueChange} from '../presentationModel/presentationModel.js';
 
 export {i18n, I18N_CURRENT_LANG} // See export at the bottom of the file!
 
@@ -32,14 +33,13 @@ const TranslationService = () => {
     let langTranslations = {};
     const isLangLoaded = Observable(false);
 
-    // todo rework - use attribute
-    const currentLang = Observable(
+    const currentLang = Attribute( // set default language
         localStorage.getItem(I18N_CURRENT_LANG)
             ? localStorage.getItem(I18N_CURRENT_LANG)
             : config.lang);
 
     const loadCurrentLang = () => {
-        const lang = currentLang.getValue();
+        const lang = valueOf(currentLang);
         isLangLoaded.setValue(false);
 
         fetch("src/i18n/" + lang + ".json")
@@ -50,7 +50,7 @@ const TranslationService = () => {
         })
     }
 
-    currentLang.onChange(lang => {
+    onValueChange(currentLang)(lang => {
         localStorage.setItem(I18N_CURRENT_LANG, lang);
         if (isInitialized) {
             loadCurrentLang();

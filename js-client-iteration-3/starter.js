@@ -3,6 +3,7 @@ import {translationService} from './src/base/service/translation.service.js';
 import {dom} from './src/base/church/dom.js';
 import {EventView, MasterController, OverView} from './src/event/event.js';
 import {SelectionController} from './src/base/controller/controller.js';
+import {setValueOf} from './src/base/presentationModel/presentationModel.js';
 
 import {config} from './config.js';
 
@@ -50,7 +51,7 @@ const start = (appRootId, events) => {
     const currentLang = translationService.currentLang;
     config.languages.forEach(lang => {
         const langElement = dom(`<a>${lang}</a>`);
-        langElement.children[0].onclick = () => currentLang.setValue(lang); // todo rework dom to avoid invoking children.
+        langElement.children[0].onclick = () => setValueOf(currentLang)(lang); // todo rework dom to avoid invoking children.
         languages.append(langElement)
     })
 
