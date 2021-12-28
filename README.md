@@ -82,11 +82,30 @@ CSS may be written in a dedicated .css file. There is the possibility <br> to wr
 
 The advantage of writing and gluing the structural CSS code next to where it belongs is,<br> to code with loose coupling. The projector may be reused without opening and touching lots of files.   
 
-![css-in-js.png](resources/img.png)
+![css-in-js.png](resources/css-in-js.png)
 
-![css-in-js-glue.png](resources/img_1.png)
+![css-in-js-glue.png](resources/css-in-js-glue.png)
 
-In my example, I didn't define the structure next to the projector itself. For the moment it is OK to have it separated within the projector.css file. 
+In my example, I didn't define the structure next to the projector itself. For the moment it is OK to have it separated within the projector.css file.
+
+#### i18n update translation without page refresh
+
+There is a pitfall, observables must always be discharged. 
+
+This approach will always render new elements and therefore as well new i18n translations. 
+![i18n-override.png](resources/i18n-override.png)
+
+By considering the translation service, we recognize that every translation creates a listener.
+![i18n-listener.png](resources/i18n-listener.png)
+
+We don't like this... Thats why we came up with the following idea.
+
+No i18n rerendering, only values gets updated. This approach is more flexible, <br>
+there is no need of taking care of discharging the language observable. <strong>But this will not always work.</strong>
+When removing an element (delete a model object), we have again to deal with discharching i18n listeners...
+![i18n-onchange.png](resources/i18n-onchange.png)
+
+Conclusion: i18n without page refresh is cool. There is one major downside, we have to deal with discharing of i18n listeners.
 
 ### x iteration - molds - selection molds
 
