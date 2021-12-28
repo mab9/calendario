@@ -12,8 +12,6 @@ window.springServerName = 'test-runner.ch';
 window.springServerPort = '9999';
 window.restPath = '';
 
-// todo rework tests according new starter js and add overview tests
-
 eventSuite.add("crud", assert => {
 
     // setup
