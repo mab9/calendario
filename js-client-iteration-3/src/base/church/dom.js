@@ -16,6 +16,7 @@ const dom = innerString => {
     const nodes = frag.querySelectorAll('[data-i18n]');
     nodes.forEach(node => {
         const key = node.dataset.i18n;
+        // todo: this might set many translations without discharging old ones
         i18n(key)(node);
     })
 

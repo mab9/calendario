@@ -74,6 +74,8 @@ const TranslationService = () => {
 
     // Translate languages without page refresh
     const translate = (key, callback) => {
+
+        // todo dischanrge observable before adding a new one for the key and element.
         onValueChange(isLangLoaded)(value => resolveCallback(callback, value, key));
         resolveCallback(callback, valueOf(isLangLoaded), key);
     }
