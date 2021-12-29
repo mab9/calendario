@@ -22,7 +22,7 @@ To install vakansie, follow these steps:
 
 ``` 
 git clone https://github.com/mab9/calendario.git
-./vakansie/js-client-iteration-2/index.html # open in your favorite browser
+./vakansie/js-client-iteration-3/index.html # open in your favorite browser
 ```
 
 **Only the frontend part of the web app is available at the moment.** 
