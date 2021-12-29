@@ -13,19 +13,8 @@ const expressionMaker = fnc => callFnc => {
         : callFnc(_ => fnc());
 }
 
-// valueOf(day.event).onModelRemove(_ => resetDay())
-
 /**
- * @typedef ListController
- * @property {Function} addModel
- * @property {Function} findById
- * @property {Function} removeModel
- * @property {Function} onModelAdd
- * @property {Function} onModelRemove
- * @property {Function} size
- * @property {Function} getAll
- * @property {Function} reset
- * @property {Function} pop
+ * @returns {ListController} ListController
  */
 const ListController = () => {
 
@@ -49,16 +38,11 @@ const ListController = () => {
 };
 
 /**
- * @typedef SelectionController
- * @property {Function} setSelectedModel
- * @property {Function} getSelectedModel
- * @property {Function} onModelSelected
- * @property {Function} clearSelection
+ * @returns {SelectionController} SelectionController
  */
 const SelectionController = noSelection => {
 
     const selectedModelObs = Observable(noSelection);
-
 
     return {
         setSelectedModel: selectedModelObs.setValue,

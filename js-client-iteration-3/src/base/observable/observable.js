@@ -44,6 +44,10 @@ const ObservableI18n = value => {
  */
 const Observable = value => {
     const listeners = [];
+
+    /**
+     * @returns {Observable} Observable
+     */
     return {
         onChange: callback => {
             listeners.push(callback);
@@ -77,6 +81,10 @@ const ObservableList = list => {
     };
     const listRemoveItem = removeItem(list);
     const delListenersRemove = removeAt(delListeners);
+
+    /**
+     * @returns {ObservableList} ObservableList
+     */
     return {
         onAdd: listener => addListeners.push(listener),
         onDel: listener => delListeners.push(listener),

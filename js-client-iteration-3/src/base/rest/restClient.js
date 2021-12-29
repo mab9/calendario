@@ -16,11 +16,14 @@ const client = (url, method = 'GET', data = null) => {
         request.body = JSON.stringify(data)
     }
 
+    /**
+     * @returns {Promise}
+     */
     return fetch(url, request)
         .then(resp => {                             // fetch API cares for the general error handling
             if (Number(resp.status) === 204) {
                 /*
-                    The common use case is to return 204 as a result
+                     The common use case is to return 204 as a result
                      of a PUT request, updating a resource, without
                      changing the current content of the page displayed
                      to the user.

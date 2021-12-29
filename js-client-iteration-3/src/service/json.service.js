@@ -14,11 +14,17 @@ const toEvent = jsonEvent => {
     setValueOf(event.to)(jsonEvent.to)
     setValueOf(event.state)(jsonEvent.state)
 
+    /**
+     * @returns {Event} Event
+     */
     return event;
 };
 
 
 const toJson = event => {
+    /**
+     * @returns {json} event as json object
+     */
     return {
         id: '',
         from: valueOf(event.from),
