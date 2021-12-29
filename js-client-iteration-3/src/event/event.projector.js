@@ -1,8 +1,9 @@
-import {setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
+import {onValueChange, setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
 import {dom} from '../base/church/dom.js';
 import {translationService} from '../base/service/translation.service.js';
+import {appendReplacing} from '../base/church/appends.js';
 
-export {eventListItemProjector}
+export {eventListItemProjector, eventOverviewProjector}
 
 /**
  * @param masterController
@@ -58,3 +59,34 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
 
     rootElement.prepend(card);
 };
+
+/**
+ * @param masterController
+ * @param rootElement
+ * @constructor
+ */
+const eventOverviewProjector = (masterController, rootElement) => {
+
+    const view = dom(`
+            <div class="card">
+                <span><span data-i18n="view.event.year"></span>          <strong></strong></span>
+                <span><span data-i18n="view.event.availableDays"></span> <strong></strong></span>
+                <span><span data-i18n="view.event.events"></span>        <strong></strong></span>
+            </div>`);
+
+    const placeHolders = view.querySelectorAll('strong');
+
+    placeHolders[0].innerText = new Date().getFullYear();
+
+    const updateValues = () => {
+        placeHolders[1].innerText = valueOf(masterController.getDaysLeft());
+        placeHolders[2].innerText = masterController.count();
+    }
+
+    masterController.onItemAdd(_ => updateValues())
+    masterController.onItemRemove(_ => updateValues())
+    onValueChange(masterController.getDaysLeft())(_ => updateValues())
+
+    appendReplacing(rootElement)(view)
+    updateValues();
+}
