@@ -1,47 +1,13 @@
-import {Attribute, onValueChange, setLabelOf, setValueOf, valueOf,} from '../base/presentationModel/presentationModel.js';
+import {Attribute, onValueChange, setValueOf, valueOf,} from '../base/presentationModel/presentationModel.js';
 import {eventListItemProjector, eventOverviewProjector} from './event.projector.js';
 import {ServiceController} from '../service/service.controller.js';
 import {ListController} from '../base/controller/controller.js';
+import {Event} from './event.model.js';
 import "../base/utils/dates.js" // we import no symbols as they are set on the respective prototypes
 
-export {MasterController, EventView, OverView, EmptyEvent};
+export {EventController, EventView, OverView};
 
-const EmptyEvent = () => {                               // facade
-    const id = Attribute(''); // empty id
-    //const from = Attribute(new Date().toISOString().substr(0,10));
-    const from = Attribute(''); // empty date
-    setLabelOf(from)("From");
-
-    const to = Attribute('');
-    setLabelOf(to)("To");
-
-    const state = Attribute("requested");
-    setLabelOf(state)("State");
-
-    const count = () => {
-        if (!valueOf(from) || !valueOf(to)) {
-            return 0;
-        }
-        return new Date(valueOf(to)).countDaysBetween(new Date(valueOf(from)));
-    }
-
-    // example code for converter
-    // xyzAttr.setConverter( input => input.toUpperCase() );
-    // xyzAttr.setValidator( input => input.length >= 3   );
-
-    /**
-     * @returns {Event} event
-     */
-    return {
-        id: id,
-        from: from,
-        to: to,
-        state: state,
-        count: count,
-    }
-};
-
-const MasterController = () => {
+const EventController = () => {
 
     const availableDays = Attribute(20); // fetch value from remote
     const totalEventDays = Attribute(0);
@@ -51,7 +17,7 @@ const MasterController = () => {
     const eventListCtrl = ListController();  // observable array of events, this state is private
 
     const createItem = () => {
-        const newItem = EmptyEvent();
+        const newItem = Event();
 
         eventService.createEvent(newItem)(event => {
             // glue created event to new Item
@@ -88,7 +54,7 @@ const MasterController = () => {
     })
 
     /**
-     * @returns {MasterController} Event Controller
+     * @returns {EventController} Event Controller
      */
     return {
         addItem: eventListCtrl.addModel,
@@ -103,24 +69,24 @@ const MasterController = () => {
 }
 
 /**
- * @param masterController
+ * @param eventController
  * @param selectionController
  * @param rootElement
  * @constructor
  */
-const OverView = (masterController, selectionController, rootElement) => {
-    eventOverviewProjector(masterController, rootElement);
+const OverView = (eventController, selectionController, rootElement) => {
+    eventOverviewProjector(eventController, rootElement);
 }
 
 /**
- * @param masterController
+ * @param eventController
  * @param selectionController
  * @param rootElement
  * @constructor
  */
-const EventView = (masterController, selectionController, rootElement) => {
-    const render = item => eventListItemProjector(masterController, selectionController, rootElement, item);
+const EventView = (eventController, selectionController, rootElement) => {
+    const render = item => eventListItemProjector(eventController, selectionController, rootElement, item);
 
     // binding
-    masterController.onItemAdd(render);
+    eventController.onItemAdd(render);
 };

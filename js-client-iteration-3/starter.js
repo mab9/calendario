@@ -1,7 +1,7 @@
 import {ServiceController} from './src/service/service.controller.js';
 import {translationService} from './src/base/service/translation.service.js';
 import {child, dom} from './src/base/church/dom.js';
-import {EventView, MasterController, OverView} from './src/event/event.js';
+import {EventView, EventController, OverView} from './src/event/event.js';
 import {SelectionController} from './src/base/controller/controller.js';
 import {setValueOf} from './src/base/presentationModel/presentationModel.js';
 
@@ -36,17 +36,17 @@ const start = (appRootIdParam, events) => {
     );
 
     const mainContainer = child(fragment);
-    const masterController = MasterController();
+    const eventCtrl = EventController();
     const selectionController = SelectionController("NoItem");
     const content = mainContainer.querySelector("#content");
     const languages = mainContainer.querySelector(".topnav-languages");
 
     const [createBtn, overViewContainer, eventContainer] = content.children;
 
-    OverView(masterController, selectionController, overViewContainer);
-    EventView(masterController, selectionController, eventContainer);
+    OverView(eventCtrl, selectionController, overViewContainer);
+    EventView(eventCtrl, selectionController, eventContainer);
 
-    createBtn.onclick = () => masterController.createItem();
+    createBtn.onclick = () => eventCtrl.createItem();
 
     // translations
     const currentLang = translationService.currentLang;
@@ -56,7 +56,7 @@ const start = (appRootIdParam, events) => {
         languages.append(langElement)
     })
 
-    events.forEach(item => masterController.processNewModel(item));
+    events.forEach(item => eventCtrl.processNewModel(item));
     root.replaceWith(mainContainer); // why replace???
 }
 

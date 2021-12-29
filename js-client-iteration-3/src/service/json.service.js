@@ -1,20 +1,20 @@
-import {EmptyEvent} from '../event/event.js';
+import {Event} from '../event/event.model.js';
 import {setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
 
 export {toEvent, toJson}
 
 const toEvent = jsonEvent => {
 
-    const emptyEvent = EmptyEvent();
+    const event = Event();
 
     if (jsonEvent['id']) {
-        setValueOf(emptyEvent.id)(jsonEvent.id)
+        setValueOf(event.id)(jsonEvent.id)
     }
-    setValueOf(emptyEvent.from)(jsonEvent.from)
-    setValueOf(emptyEvent.to)(jsonEvent.to)
-    setValueOf(emptyEvent.state)(jsonEvent.state)
+    setValueOf(event.from)(jsonEvent.from)
+    setValueOf(event.to)(jsonEvent.to)
+    setValueOf(event.state)(jsonEvent.state)
 
-    return emptyEvent;
+    return event;
 };
 
 

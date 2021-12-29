@@ -1,4 +1,5 @@
-import {EmptyEvent, EventView, OverView, MasterController} from './event.js';
+import {EventView, OverView, EventController} from './event.js';
+import {Event} from './event.model.js';
 import {Suite} from "../base/test/test.js";
 import {config, env} from '../../config.js';
 import {setValueOf} from '../base/presentationModel/presentationModel.js';
@@ -17,7 +18,7 @@ eventSuite.add("crud", assert => {
     // setup
     const masterContainer = document.createElement("div");
 
-    const masterController = MasterController();
+    const masterController = EventController();
     const selectionController = SelectionController();
 
     // create the views, incl. binding
@@ -28,10 +29,10 @@ eventSuite.add("crud", assert => {
 
     assert.is(masterContainer.children.length, 0 * elementsPerRow + defaultElements);
 
-    masterController.addItem(EmptyEvent());
+    masterController.addItem(Event());
     assert.is(masterContainer.children.length, 1 * elementsPerRow + defaultElements);
 
-    masterController.addItem(EmptyEvent());
+    masterController.addItem(Event());
     assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
 
     masterController.createItem();
@@ -47,7 +48,7 @@ eventSuite.add("overview", assert => {
     // setup
     const masterContainer = document.createElement("div");
 
-    const masterController = MasterController();
+    const masterController = EventController();
     const selectionController = SelectionController();
 
     // create the views, incl. binding
