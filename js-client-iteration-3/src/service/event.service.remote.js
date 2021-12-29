@@ -10,6 +10,7 @@ const vakansieService = URL => {
     const loadeEvents = withEvents =>
         client(URL)
         .then(json => {
+            // debugging logs
             // console.log("All events:", JSON.stringify(json));
             const eventAttributes = json.map(item => toEvent(item))
             withEvents(eventAttributes);

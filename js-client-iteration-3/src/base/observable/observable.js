@@ -14,9 +14,11 @@ const ObservableI18n = value => {
     return {
         discharge : id => {
             listeners.delete(id)
+            // debugging logs
             //console.info("discharged id " + id + " listeners size " + listeners.size)
         },
         onChangeI18n: (callback, elementId) => {
+            // debugging logs
             //console.info("add listener with id", elementId)
             listeners.set("" + elementId, callback);
             if (listeners.size > 50) {
@@ -28,9 +30,9 @@ const ObservableI18n = value => {
             if (value === newValue) {
                 return;
             }
-            const oldValue = value;
+            const oldOne = value;
             value = newValue;
-            listeners.forEach(callback => callback(value, oldValue));
+            listeners.forEach(callback => callback(value, oldOne));
         }
     }
 };
@@ -48,7 +50,8 @@ const Observable = value => {
             if (listeners.length > 50) {
                 console.debug("log listener count suspicious: ", listeners.length);
             }
-            //callback(value, value);  // I don't like on change events that are executed right away
+            // I don't like on change events that are executed right away
+            // callback(value, value);
         },
         getValue: () => value,
         setValue: newValue => {
@@ -83,7 +86,7 @@ const ObservableList = list => {
             return item;
         },
         del: item => {
-            const r = listRemoveItem(item);
+            listRemoveItem(item);
             const safeIterate = [...delListeners]; // shallow copy as we might change listeners array while iterating
             safeIterate.forEach((listener, index) => listener(item, () => delListenersRemove(index)));
         },

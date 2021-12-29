@@ -23,8 +23,8 @@ const i18n = (key) => (destination) => {
 
     const callback = (translation) => {
         destination.type === 'button'
-            ? destination.value = translation
-            : destination.innerText = translation;
+            ? (() => destination.value = translation)()
+            : (() => destination.innerText = translation)();
     }
 
     // const id = node.dataset.i18nId;  // access dataset value

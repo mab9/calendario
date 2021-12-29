@@ -8,11 +8,11 @@ import {setValueOf} from './src/base/presentationModel/presentationModel.js';
 import {config} from './config.js';
 
 /**
- * @param {string} appRootId
+ * @param {string} appRootIdParam we don't reuse the global name
  * @param {Event[]} events
  * @constructor
  */
-const start = (appRootId, events) => {
+const start = (appRootIdParam, events) => {
 
     translationService.init();
 
@@ -20,7 +20,7 @@ const start = (appRootId, events) => {
     const root = document.getElementById(CONTENT_WRAPPER)
 
     const mainContainer = dom(`
-        <div id="${appRootId}">
+        <div id="${appRootIdParam}">
             <NAV class="topnav">
                 <DIV class="topnav-header"></DIV>
                 <A>Vakansie</A>

@@ -28,10 +28,10 @@ function Assert() {
 
 const [Test, name, logic] = Tuple(2); // data type to capture test to-be-run
 
-function test(name, callback) {
+function test(nameParam, callback) {
     const assert = Assert();
     callback(assert);
-    report(name, assert.results)
+    report(nameParam, assert.results)
 }
 
 function Suite(suiteName) {
@@ -41,12 +41,12 @@ function Suite(suiteName) {
         add:  (testName, callback) => tests.push(Test (testName) (callback)),
         run:  () => {
             const suiteAssert = Assert();
-            tests.forEach( test => test(logic) (suiteAssert) );
+            tests.forEach( testFnc => testFnc(logic) (suiteAssert) );
             total += suiteAssert.results.length;
             if (suiteAssert.results.every( id )) { // whole suite was ok, report whole suite
                 report("suite " + suiteName, suiteAssert.results)
             } else { // some test in suite failed, rerun tests for better error indication
-                tests.forEach( test => suite.test( test(name), test(logic) ) )
+                tests.forEach( testFnc => suite.test( testFnc(name), testFnc(logic) ) )
             }
         }
     };

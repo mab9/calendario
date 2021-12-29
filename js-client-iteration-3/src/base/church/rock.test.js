@@ -47,7 +47,7 @@ rock.add("choice", assert => {
 
     const [Cash, CreditCard, Transfer, match] = Choice(3); // generalized sum type
 
-    const pay = payment => match(payment)                  // "pattern" match
+    const pay = paymentParam => match(paymentParam)                  // "pattern" match
         (() =>
              amount => "pay " + amount + " cash")
         (({number, sec}) =>

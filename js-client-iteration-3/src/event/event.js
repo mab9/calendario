@@ -28,6 +28,7 @@ const EmptyEvent = () => {                               // facade
             valueOf(from)).getDate();
     }
 
+    // example code for converter
     // xyzAttr.setConverter( input => input.toUpperCase() );
     // xyzAttr.setValidator( input => input.length >= 3   );
 

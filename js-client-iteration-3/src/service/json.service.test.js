@@ -14,7 +14,7 @@ jsonToModelSuite.add("event", assert => {
     };
     const event = toEvent(jsonEvent);
 
-    //assert.is(valueOf(event.id)    , 1);
+    assert.is(valueOf(event.id)    , 1);
     assert.is(valueOf(event.from)  , '2020-12-24');
     assert.is(valueOf(event.to)    , '2020-12-26');
     assert.is(valueOf(event.state) , 'requested');

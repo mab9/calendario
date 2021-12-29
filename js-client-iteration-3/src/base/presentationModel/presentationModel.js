@@ -33,7 +33,7 @@ const Attribute = value => {
     const getObs = (name, initValue = null) =>
         hasObs(name)
             ? observables[name]
-            : observables[name] = Observable(initValue);
+            : (() => observables[name] = Observable(initValue))();
 
     getObs(VALUE, value); // initialize the value at least
     getObs(CLICK, false); // initialize click value to toggle it
