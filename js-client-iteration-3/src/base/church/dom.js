@@ -1,7 +1,17 @@
 import {i18n} from "../service/translation.service.js";
 
-export {dom}
+export {dom, child}
 
+/**
+ * The difference of a document fragment to an element disappears when it is added to the DOM.
+ * What happens is that all the child nodes of the document fragment are inserted at the location
+ * in the DOM where the document fragment is inserted. The content of the document fragment
+ * gets inserted but not the document fragment itself. The fragment itself continues to exist but now has no children.
+ *
+ * This allows to insert multiple nodes into the DOM at the same time.
+ * @param innerString
+ * @returns {DocumentFragment}
+ */
 const dom = innerString => {
     let frag = document.createDocumentFragment();
 
@@ -16,9 +26,21 @@ const dom = innerString => {
     const nodes = frag.querySelectorAll('[data-i18n]');
     nodes.forEach(node => {
         const key = node.dataset.i18n;
-        // todo: this might set many translations without discharging old ones
+
+        // this might set many translations without discharging old ones
         i18n(key)(node);
     })
 
     return frag;
 };
+
+/**
+ * Helper function to retrieve elements inside a fragment.
+ * The dom function from above creates html elements that are pasted into a fragment...
+ *
+ * @param element
+ * @returns {*}
+ */
+const child = element => {
+    return element.childNodes[0];
+}

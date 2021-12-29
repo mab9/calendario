@@ -73,7 +73,7 @@ Apply test and CSS, local development
 - describe local starter and platform config
 - remote starter
 
-### 3 iteration - refactor projector, projector CSS, whatsoever - i18n - object override, whatsoever
+### 3 iteration - refactor projector, projector CSS, i18n, object override, whatsoever
 
 Generalize projector, so that it may also be used with other models?
 

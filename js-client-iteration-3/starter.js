@@ -51,7 +51,7 @@ const start = (appRootIdParam, events) => {
     const currentLang = translationService.currentLang;
     config.languages.forEach(lang => {
         const langElement = dom(`<a>${lang}</a>`);
-        langElement.children[0].onclick = () => setValueOf(currentLang)(lang); // todo rework dom to avoid invoking children.
+        langElement.children[0].onclick = () => setValueOf(currentLang)(lang);
         languages.append(langElement)
     })
 
