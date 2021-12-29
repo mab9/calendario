@@ -4,6 +4,7 @@ import {eventListItemProjector} from './event.projector.js';
 import {appendReplacing} from '../base/church/appends.js';
 import {ServiceController} from '../service/service.controller.js';
 import {ListController} from '../base/controller/controller.js';
+import "../base/utils/dates.js" // we import no symbols as they are set on the respective prototypes
 
 export {MasterController, EventView, OverView, EmptyEvent};
 
@@ -23,9 +24,7 @@ const EmptyEvent = () => {                               // facade
         if (!valueOf(from) || !valueOf(to)) {
             return 0;
         }
-        // todo create date function
-        return new Date(valueOf(to)).getDate() - new Date(
-            valueOf(from)).getDate();
+        return new Date(valueOf(to)).countDaysBetween(new Date(valueOf(from)));
     }
 
     // example code for converter
