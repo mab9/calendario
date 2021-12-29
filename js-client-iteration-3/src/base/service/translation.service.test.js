@@ -1,16 +1,18 @@
 import {i18n, I18N_CURRENT_LANG, translationService} from "./translation.service.js";
 import {Suite} from "../test/test.js";
 import {config} from "../../../config.js";
+import {setValueOf, valueOf} from '../presentationModel/presentationModel.js';
 
 const util = Suite("translation-service");
 
 util.add("service initialization", assert => {
     // reset cache and pre initialized observable
     localStorage.setItem(I18N_CURRENT_LANG, config.lang);
-    translationService.currentLang.setValue(config.lang)
+    const currentLang = translationService.currentLang;
+    setValueOf(currentLang)(config.lang);
 
     assert.true(!translationService.isLangLoaded.getValue());
-    assert.is(translationService.currentLang.getValue(), config.lang);
+    assert.is(valueOf(currentLang), config.lang);
 
     const destination = document.createElement("div")
     const key = "test.dom.title";
@@ -26,12 +28,13 @@ util.add("service initialization", assert => {
 util.add("language change", assert => {
     // reset cache and pre initialized observable
     localStorage.setItem(I18N_CURRENT_LANG, config.lang);
-    translationService.currentLang.setValue(config.lang)
+    const currentLang = translationService.currentLang;
+    setValueOf(currentLang)(config.lang);
 
     assert.true(!translationService.isLangLoaded.getValue());
-    assert.is(translationService.currentLang.getValue(), config.lang);
+    assert.is(valueOf(currentLang), config.lang);
 
-    translationService.currentLang.setValue('en')
+    setValueOf(currentLang)('en');
     assert.is(localStorage.getItem(I18N_CURRENT_LANG), 'en');
 });
 

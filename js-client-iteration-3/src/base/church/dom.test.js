@@ -29,10 +29,6 @@ util.add("Convert nested to HTML elements", assert => {
     assert.is(child.childElementCount, 1);
     assert.is(child.childNodes[0].nodeName, h1.nodeName);
     assert.is(child.childNodes[0].innerHTML, "yeah");
-
-    //while (element.childNodes[0]) {
-    //    console.info("test", element.childNodes[0])
-    //  }
 });
 
 util.add("Convert to html and do i18n", assert => {
@@ -46,7 +42,9 @@ util.add("Convert to html and do i18n", assert => {
     const div = document.createElement("div")
     assert.is(element.childElementCount, 1);
     assert.is(element.childNodes[0].nodeName, div.nodeName);
-    assert.true(element.childNodes[0].innerHTML === `<h1 data-i18n="${key}">${key}</h1>`);
+    //assert.true(element.childNodes[0].innerHTML === `<h1 data-i18n="${key}">${key}</h1>`);
+    // the i18n id is need to discharge the listener
+    assert.true(element.childNodes[0].innerHTML === `<h1 data-i18n="${key}" data-i18n-id="0">${key}</h1>`);
 
     const child = element.childNodes[0];
     const h1 = document.createElement("h1")
