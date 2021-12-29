@@ -1,5 +1,5 @@
 import {onValueChange, setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
-import {dom} from '../base/church/dom.js';
+import {dom, child} from '../base/church/dom.js';
 import {translationService} from '../base/service/translation.service.js';
 import {appendReplacing} from '../base/church/appends.js';
 
@@ -14,7 +14,7 @@ export {eventListItemProjector, eventOverviewProjector}
  */
 const eventListItemProjector = (masterController, selectionController, rootElement, item) => {
 
-    const eventElement = dom(`
+    const fragment = dom(`
         <div class="card">
             <div class="card-date"><span data-i18n="view.event.from"></span> <input type="date"/></div>
             <div class="card-date"><span data-i18n="view.event.to"></span> <input type="date"></div>
@@ -23,7 +23,7 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
         </div>
     `);
 
-    const card = eventElement.children[0];
+    const card = child(fragment);
     const [from, to, state, trash] = card.children;
 
     const fromInput = from.querySelector('input');
@@ -57,7 +57,7 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
         removeMe();
     });
 
-    rootElement.prepend(card);
+    rootElement.prepend(fragment);
 };
 
 /**
@@ -67,14 +67,15 @@ const eventListItemProjector = (masterController, selectionController, rootEleme
  */
 const eventOverviewProjector = (masterController, rootElement) => {
 
-    const view = dom(`
+    const fragment = dom(`
             <div class="card">
                 <span><span data-i18n="view.event.year"></span>          <strong></strong></span>
                 <span><span data-i18n="view.event.availableDays"></span> <strong></strong></span>
                 <span><span data-i18n="view.event.events"></span>        <strong></strong></span>
             </div>`);
 
-    const placeHolders = view.querySelectorAll('strong');
+    const card = child(fragment);
+    const placeHolders = card.querySelectorAll('strong');
 
     placeHolders[0].innerText = new Date().getFullYear();
 
@@ -87,6 +88,6 @@ const eventOverviewProjector = (masterController, rootElement) => {
     masterController.onItemRemove(_ => updateValues())
     onValueChange(masterController.getDaysLeft())(_ => updateValues())
 
-    appendReplacing(rootElement)(view)
+    appendReplacing(rootElement)(fragment)
     updateValues();
 }

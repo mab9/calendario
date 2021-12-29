@@ -1,6 +1,6 @@
 import {ServiceController} from './src/service/service.controller.js';
 import {translationService} from './src/base/service/translation.service.js';
-import {dom} from './src/base/church/dom.js';
+import {child, dom} from './src/base/church/dom.js';
 import {EventView, MasterController, OverView} from './src/event/event.js';
 import {SelectionController} from './src/base/controller/controller.js';
 import {setValueOf} from './src/base/presentationModel/presentationModel.js';
@@ -19,7 +19,7 @@ const start = (appRootIdParam, events) => {
     const CONTENT_WRAPPER = 'root';
     const root = document.getElementById(CONTENT_WRAPPER)
 
-    const mainContainer = dom(`
+    const fragment = dom(`
         <div id="${appRootIdParam}">
             <NAV class="topnav">
                 <DIV class="topnav-header"></DIV>
@@ -35,6 +35,7 @@ const start = (appRootIdParam, events) => {
         </div>`
     );
 
+    const mainContainer = child(fragment);
     const masterController = MasterController();
     const selectionController = SelectionController("NoItem");
     const content = mainContainer.querySelector("#content");
