@@ -107,6 +107,12 @@ When removing an element (delete a model object), we have again to deal with dis
 
 Conclusion: i18n without page refresh is cool. There is one major downside, we have to deal with discharing of i18n listeners.
 
+#### Create helpers with prototypes 
+
+Create helper functions to simplify code and safe time...
+
+![img.png](resources/date-prototype.png)
+
 ### x iteration - molds - selection molds
 
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
