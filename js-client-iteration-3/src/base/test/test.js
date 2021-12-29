@@ -2,9 +2,8 @@
 
 export { Suite, total }
 
-import { padLeft, padRight}   from "../church/strings.js"; // for formatting the report
-import { Tuple }              from "../church/rock.js";
-import { id }                 from "../church/church.js";
+import { padLeft, padRight}   from "../utils/strings.js"; // for formatting the report
+import { Tuple }              from "../utils/rock.js";
 
 let total = 0;
 
@@ -43,7 +42,7 @@ function Suite(suiteName) {
             const suiteAssert = Assert();
             tests.forEach( testFnc => testFnc(logic) (suiteAssert) );
             total += suiteAssert.results.length;
-            if (suiteAssert.results.every( id )) { // whole suite was ok, report whole suite
+            if (suiteAssert.results.every( id => id )) { // webcl church // whole suite was ok, report whole suite
                 report("suite " + suiteName, suiteAssert.results)
             } else { // some test in suite failed, rerun tests for better error indication
                 tests.forEach( testFnc => suite.test( testFnc(name), testFnc(logic) ) )

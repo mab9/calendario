@@ -1,6 +1,5 @@
 import {Observable} from "../observable/observable.js";
-import {id} from "../church/church.js";
-import {isFunction} from "../church/isfnc.js";
+import {isFunction} from "../utils/isfnc.js";
 
 export {
     Attribute, presentationModelFromAttributeNames,
@@ -38,7 +37,7 @@ const Attribute = value => {
     getObs(VALUE, value); // initialize the value at least
     getObs(CLICK, false); // initialize click value to toggle it
 
-    let   convert           = id ;
+    let   convert           = id => id; // webcl church
     const setConverter      = converter => {
         convert = converter;
         setConvertedValue(getObs(VALUE).getValue());

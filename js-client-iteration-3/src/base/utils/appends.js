@@ -1,5 +1,6 @@
 export {appendFirst, appendReplacing}
 
+// deprecated
 const appendFirst = rootElement => newElements => {
     rootElement.firstChild
         ? rootElement.prepend(newElements)

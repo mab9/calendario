@@ -1,7 +1,7 @@
 import {onValueChange, setValueOf, valueOf} from '../base/presentationModel/presentationModel.js';
-import {dom, child} from '../base/church/dom.js';
+import {dom, child} from '../base/utils/dom.js';
 import {translationService} from '../base/service/translation.service.js';
-import {appendReplacing} from '../base/church/appends.js';
+import {appendReplacing} from '../base/utils/appends.js';
 
 export {eventListItemProjector, eventOverviewProjector}
 

@@ -3,13 +3,12 @@
 /////////////////////////////////
 // base code
 /////////////////////////////////
-import '../church/strings.test.js'
-import '../church/dom.test.js'
+import '../utils/strings.test.js'
+import '../utils/dom.test.js'
 
-import '../church/appends.test.js';
+import '../utils/appends.test.js';
 
-import '../church/church.test.js'
-import '../church/rock.test.js'
+import '../utils/rock.test.js'
 
 import '../observable/observable.test.js'
 

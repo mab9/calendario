@@ -1,6 +1,6 @@
 import {ServiceController} from './src/service/service.controller.js';
 import {translationService} from './src/base/service/translation.service.js';
-import {child, dom} from './src/base/church/dom.js';
+import {child, dom} from './src/base/utils/dom.js';
 import {EventView, EventController, OverView} from './src/event/event.js';
 import {SelectionController} from './src/base/controller/controller.js';
 import {setValueOf} from './src/base/presentationModel/presentationModel.js';

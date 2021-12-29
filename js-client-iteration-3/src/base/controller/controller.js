@@ -3,7 +3,7 @@
  */
 import {Observable, ObservableList} from "../observable/observable.js";
 import {valueOf} from "../presentationModel/presentationModel.js";
-import {isFunction} from "../church/isfnc.js";
+import {isFunction} from "../utils/isfnc.js";
 
 export {ListController, SelectionController}
 

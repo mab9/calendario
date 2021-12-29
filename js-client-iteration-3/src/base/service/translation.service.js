@@ -1,5 +1,5 @@
 import {config} from "../../../config.js";
-import {doIf} from "../church/maybe.js";
+import {doIf} from "../utils/maybe.js";
 import {Attribute, onValueChange, valueOf} from '../presentationModel/presentationModel.js';
 import {ObservableI18n} from '../observable/observable.js';
 
