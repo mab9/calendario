@@ -59,6 +59,7 @@ const SelectionController = noSelection => {
 
     const selectedModelObs = Observable(noSelection);
 
+
     return {
         setSelectedModel: selectedModelObs.setValue,
         getSelectedModel: selectedModelObs.getValue,

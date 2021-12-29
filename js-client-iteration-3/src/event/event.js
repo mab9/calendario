@@ -85,7 +85,7 @@ const OverView = (eventController, selectionController, rootElement) => {
  * @constructor
  */
 const EventView = (eventController, selectionController, rootElement) => {
-    const render = item => eventListItemProjector(eventController, selectionController, rootElement, item);
+    const render = model => eventListItemProjector(eventController, selectionController, rootElement, model);
 
     // binding
     eventController.onItemAdd(render);
