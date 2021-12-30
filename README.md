@@ -113,11 +113,13 @@ Create helper functions to simplify code and safe time...
 
 ![img.png](resources/date-prototype.png)
 
-### x iteration - prod preparations
+### 4 iteration - build frontend - ready to deploy
 
 - minifying
 - bundling js code
-- removing unnecessary dependencies like local starter
+- removing unnecessary dependencies like local starter. bundle will take care of it.
+
+Visit [build-info.md](./js-client-iteration-4/build-info.md) for more information.
 
 ### x iteration toaster, error handling
 
