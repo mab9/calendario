@@ -127,7 +127,7 @@ Visit [build-info.md](./js-client-iteration-4/build-info.md) for more informatio
 - remote client error handling
 - 404 page
 
-### x iteration menu and router
+### x iteration menu and router, bus (backbone - js native)
 
 - implement menu and router components. see vakansie impl.
 
@@ -136,6 +136,10 @@ Visit [build-info.md](./js-client-iteration-4/build-info.md) for more informatio
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
 
 Webcl week 14
+
+### x iteration - auto testing
+
+https://code.google.com/archive/p/js-test-driver/
 
 ### x iteration - core js code extraction
 
