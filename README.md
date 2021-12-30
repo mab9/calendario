@@ -113,17 +113,27 @@ Create helper functions to simplify code and safe time...
 
 ![img.png](resources/date-prototype.png)
 
+### x iteration - prod preparations
+
+- minifying - 
+- bundling js code
+- removing unnecessary dependencies like local starter
+
+### x iteration toaster, error handling
+
+- toaster
+- remote client error handling
+- 404 page
+
+### x iteration menu and router
+
+- implement menu and router components. see vakansie impl.
+
 ### x iteration - molds - selection molds
 
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
 
 Webcl week 14
-
-### x iteration - prod preparations
-
-- obfuscating? - yes or no...
-- minifying
-- bundling js code
 
 ### x iteration - core js code extraction
 
