@@ -41,15 +41,16 @@
 
 
 .trash-event {
-    color: var(--color-primary-background);
+    fill: var(--color-primary-background);
     opacity: 0;
     outline: none;
     cursor: pointer;
     font-size: larger;
+    width: 1rem;
 }
 
 .trash-event:hover {
-    color: var(--color-primary-background-dark);
+    fill: var(--color-primary-background-dark);
 }
 
 .trash-event.selected {
