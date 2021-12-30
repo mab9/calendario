@@ -38,7 +38,7 @@ eventSuite.add("crud", assert => {
     masterController.createItem();
     assert.is(masterContainer.children.length, 3 * elementsPerRow + defaultElements);
 
-    const firstDeleteButton = masterContainer.querySelector('.trash-event')
+    const firstDeleteButton = masterContainer.querySelector('svg').parentNode;
     firstDeleteButton.click();
     assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
 });
