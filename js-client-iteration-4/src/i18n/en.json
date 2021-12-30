@@ -1,0 +1,24 @@
+{
+    "test.dom.title": "Donatello",
+
+    "view.event.from"  : "From",
+    "view.event.to"    : "To",
+    "view.event.state" : "State",
+
+    "view.event.year"          : "Year",
+    "view.event.availableDays" : "Available Days",
+    "view.event.events"        : "Planned events",
+
+    "month.jan":  "January",
+    "month.feb":  "February",
+    "month.mar":  "March",
+    "month.apr":  "April",
+    "month.mai":  "Mai",
+    "month.jul":  "June",
+    "month.jun":  "July",
+    "month.aug":  "August",
+    "month.sep":  "September",
+    "month.oct":  "October",
+    "month.nov":  "November",
+    "month.dez":  "December"
+}

@@ -1,0 +1,58 @@
+
+.card {
+    transition: all ease-in-out .3s;
+    margin: 1em auto 1em auto;
+    padding: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1em;
+    background-color: var(--color-background-light);
+    color: var(--color-secondary-background-dark);
+
+    display: grid;
+    grid-column-gap: 0.5em;
+    grid-template-columns: 32% 28% 26% 14%;  /* or use auto */
+}
+
+.card:hover {
+    box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.2),
+                4px 12px 23px 5px rgba(0, 0, 0, 0.19);
+}
+
+.card-date input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid var(--color-primary-background);
+    background-color: var(--color-background-light);
+
+    outline: none;
+    cursor: pointer;
+}
+
+.card-date input:hover {
+    border-bottom: 2px solid var(--color-primary-background-dark);
+}
+
+.card-date input ::-webkit-inner-spin-button {
+    display: none;
+}
+
+
+
+.trash-event {
+    color: var(--color-primary-background);
+    opacity: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: larger;
+}
+
+.trash-event:hover {
+    color: var(--color-primary-background-dark);
+}
+
+.trash-event.selected {
+    transition: all ease-in-out .3s;
+    opacity: 1;
+}
