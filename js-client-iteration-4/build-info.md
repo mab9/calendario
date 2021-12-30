@@ -1,4 +1,29 @@
-# running code
+# tldr; build and start frontend (linux)
+
+**Copy code to build directory and remove unwanted parts**
+
+    rm -r build 2> /dev/null
+    mkdir -p ./build && cp -R ./ ./build 2> /dev/null
+    rm -r ./build/build # remove recursive copied directorie
+
+**Prepare config and code for prod**
+- config ./build/config.js file
+- update ./build/index.html server values
+- bundle js code: `rollup -o ./build/starter.bundle.js -f es -w . ./build/starter.js`
+- minify code: [toptal minifier](https://www.toptal.com/developers/javascript-minifier)
+
+**Refer to bundle.minified.js and remove obsolete files**
+
+    sed -i -e 's/starter.js/starter.bundle.minified.js/g' ./build/index.html
+    find ./build -name "*.js" ! -name "*.bundle.minified.js" -type f -delete # remove bundled js code
+    rm ./build/.gitignore ./build/.editorconfig ./build/test.html ./build/*.md # remove unwanted files
+    find ./build -depth -type d -empty -delete  # remove empty directories
+
+**Start serving** `npx http-server -c-1`
+
+**We usually don't minify code for local and dev environments.**
+
+## running code
 For running the code that is build on the ES6 module feature you either
 
 - have to run a local server like with `npx http-server -c-1` or
@@ -19,20 +44,22 @@ For running the code that is build on the ES6 module feature you either
     - install with  `sudo npm install --global rollup`
     - run via `rollup -o starter.bundle.js -f es -w . starter.js`
 
-- css bundling
-
 - minifying - compress code for quick loading times
   - js code minifying with [toptal minifier](https://www.toptal.com/developers/javascript-minifier) (copy past bundled code - use whitespace option)
   - css code minfying with [minifier.org](https://www.minifier.org)
   - we don't minify html code. html code is genereted ad hoc via JS
   - not every minifier strategy works with our self written fancy JS code. Arrow functions causes some problems...
 
-## quick loading infos (bundling and compression with minifying)
+We don't bundle and minify CSS code at this point. There are many threads and example on that topic.
 
-Is a bundle and minified code always loaded faster compared to non optimized code? It depends!
-Application ready may be delayed through a bundle. A bundle has to be fully charged. In the meantimes several smaller files could be loaded...
-An optimized loading strategy is crucial for fast and quick initializations of websites..
+Cool would be to build the code into a dedicated folder and remove all not necessary files (test, git, readme, ...).
 
+## fast loading infos
+
+Performance matters, but it is quite a complex topic. For example, bundling application's assets in a single file is necessary only when using HTTP/1.
+With HTTP/2, many files can be downloaded concurrently, allowing fine tune the assets delivered to the client instead of sending to everyone the same bulky bundle.
+
+Always fact-check assumptions, measuring every aspect to improve before and after implementing any “optimization”, and make use of the available tools to analyze the impact of performance issues in your users’ experience.
 
 ## npx infos
 For NPM to execute a package, you have to install the package from
