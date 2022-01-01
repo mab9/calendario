@@ -22,7 +22,7 @@ To install vakansie, follow these steps:
 
 ``` 
 git clone https://github.com/mab9/calendario.git
-./vakansie/js-client-iteration-4/index.html # open in your favorite browser
+./vakansie/js-client-iteration-5/index.html # open in your favorite browser
 ```
 
 **Only the frontend part of the web app is available at the moment.** 
@@ -121,15 +121,16 @@ Create helper functions to simplify code and safe time...
 
 Visit [build-info.md](./js-client-iteration-4/build-info.md) for more information.
 
+### 5 iteration menu and router, bus (backbone - js native)
+
+- implement menu and router components. see vakansie impl.
+
+
 ### x iteration toaster, error handling
 
 - toaster
 - remote client error handling
 - 404 page
-
-### x iteration menu and router, bus (backbone - js native)
-
-- implement menu and router components. see vakansie impl.
 
 ### x iteration - molds - selection molds
 
