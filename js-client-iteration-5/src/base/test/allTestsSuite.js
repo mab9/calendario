@@ -5,16 +5,13 @@
 /////////////////////////////////
 import '../utils/strings.test.js'
 import '../utils/dom.test.js'
-
+import '../utils/dates.test.js'
 import '../utils/appends.test.js';
-
 import '../utils/rock.test.js'
 
 import '../observable/observable.test.js'
-
-
-import '../utils/dates.test.js'
 import '../service/translation.service.test.js'
+import '../router/router.test.js'
 
 
 /////////////////////////////////
