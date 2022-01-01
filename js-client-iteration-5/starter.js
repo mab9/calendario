@@ -5,6 +5,7 @@ import {EventView} from './src/event/event.view.js';
 import {EventController} from './src/event/event.controller.js';
 
 import {config} from './config.js';
+import {ServiceController} from './src/service/service.controller.js';
 
 /**
  * @param {string} appRootIdParam we don't reuse the global name
@@ -35,6 +36,9 @@ const start = (appRootIdParam) => {
     const eventCtrl = EventController();
     const content = mainContainer.querySelector("#content");
     EventView(eventCtrl, content);
+
+    // replace functionality to the corresponding ctrl into an init method or something similar
+    ServiceController().vakansieService.loadeEvents(events => events.forEach(item => eventController.processNewModel(item)));
 
     // translations
     const languages = mainContainer.querySelector(".topnav-languages");

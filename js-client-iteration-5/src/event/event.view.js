@@ -28,9 +28,6 @@ const EventView = (eventController, rootElement) => {
     OverView(eventController, selectionController, overViewContainer);
     EventDetailView(eventController, selectionController, eventContainer);
 
-    // replace functionality to the corresponding ctrl into an init method or something similar
-    ServiceController().vakansieService.loadeEvents(events => events.forEach(item => eventController.processNewModel(item)));
-
     rootElement.append(container);
 }
 

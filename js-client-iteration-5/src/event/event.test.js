@@ -1,4 +1,5 @@
-import {EventView, OverView, EventController} from './event.js';
+import {EventView } from './event.view.js';
+import {EventController} from './event.controller.js'
 import {Event} from './event.model.js';
 import {Suite} from "../base/test/test.js";
 import {config, env} from '../../config.js';
@@ -17,46 +18,41 @@ eventSuite.add("crud", assert => {
 
     // setup
     const masterContainer = document.createElement("div");
-
     const masterController = EventController();
-    const selectionController = SelectionController();
+    EventView(masterController, masterContainer);
 
-    // create the views, incl. binding
-    EventView(masterController, selectionController, masterContainer);
-
+    const container = masterContainer.querySelector('.events');
     const elementsPerRow = 1;
     const defaultElements = 0;
 
-    assert.is(masterContainer.children.length, 0 * elementsPerRow + defaultElements);
+    assert.is(container.children.length, 0 * elementsPerRow + defaultElements);
 
     masterController.addItem(Event());
-    assert.is(masterContainer.children.length, 1 * elementsPerRow + defaultElements);
+    assert.is(container.children.length, 1 * elementsPerRow + defaultElements);
 
     masterController.addItem(Event());
-    assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
+    assert.is(container.children.length, 2 * elementsPerRow + defaultElements);
 
     masterController.createItem();
-    assert.is(masterContainer.children.length, 3 * elementsPerRow + defaultElements);
+    assert.is(container.children.length, 3 * elementsPerRow + defaultElements);
 
-    const firstDeleteButton = masterContainer.querySelector('svg').parentNode;
+    const firstDeleteButton = container.querySelector('svg').parentNode;
     firstDeleteButton.click();
-    assert.is(masterContainer.children.length, 2 * elementsPerRow + defaultElements);
+    assert.is(container.children.length, 2 * elementsPerRow + defaultElements);
 });
 
 eventSuite.add("overview", assert => {
 
     // setup
     const masterContainer = document.createElement("div");
-
     const masterController = EventController();
-    const selectionController = SelectionController();
+    EventView(masterController, masterContainer);
 
-    // create the views, incl. binding
-    OverView(masterController, selectionController, masterContainer);
+    const container = masterContainer.querySelector('.overview');
 
-    assert.is(masterContainer.children.length, 1);
+    assert.is(container.children.length, 1);
 
-    let [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    let [year, availableDays, eventCounter] = container.children[0].children;
 
     // Test does not define a language and only contains the translation key.
     const yearHtml = '<span data-i18n="view.event.year">view.event.year</span>          <strong>';
@@ -71,22 +67,22 @@ eventSuite.add("overview", assert => {
     const removeI18nId = element => element.innerHTML.replace(/\s(data-i18n-id="[0-9]*")/,'');
 
     assert.true(removeI18nId(year).includes(yearHtml + new Date().getFullYear() +  '</strong>'));
-    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>'));
     assert.true(removeI18nId(eventCounter).includes(eventsHtml + '0</strong>'));
 
     masterController.createItem();
-    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    [year, availableDays, eventCounter] = container.children[0].children;
 
     assert.true(removeI18nId(year).includes(yearHtml + new Date().getFullYear() +  '</strong>'));
-    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>'));
     assert.true(removeI18nId(eventCounter).includes(eventsHtml + '1</strong>'));
 
 
     masterController.createItem();
-    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    [year, availableDays, eventCounter] = container.children[0].children;
 
     assert.true(removeI18nId(year).includes(yearHtml + new Date().getFullYear() +  '</strong>'));
-    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>'));
     assert.true(removeI18nId(eventCounter).includes(eventsHtml + '2</strong>'));
 
 
@@ -100,17 +96,17 @@ eventSuite.add("overview", assert => {
     });
 
     masterController.createItem();
-    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    [year, availableDays, eventCounter] = container.children[0].children;
 
     assert.true(removeI18nId(year).includes(yearHtml + new Date().getFullYear() +  '</strong>'));
-    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '18</strong>') > 0);
+    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '18</strong>'));
     assert.true(removeI18nId(eventCounter).includes(eventsHtml + '3</strong>'));
 
     masterController.removeItem(eventRef);
-    [year, availableDays, eventCounter] = masterContainer.children[0].children;
+    [year, availableDays, eventCounter] = container.children[0].children;
 
     assert.true(removeI18nId(year).includes(yearHtml + new Date().getFullYear() +  '</strong>'));
-    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>') > 0);
+    assert.true(removeI18nId(availableDays).includes(availableDaysHtml + '20</strong>'));
     assert.true(removeI18nId(eventCounter).includes(eventsHtml + '2</strong>'));
 });
 
