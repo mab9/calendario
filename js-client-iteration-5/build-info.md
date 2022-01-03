@@ -27,7 +27,8 @@
 For running the code that is build on the ES6 module feature you either
 
 - have to run a local server like with `npx http-server -c-1` or
-- use the [intellij local server](https://www.jetbrains.com/help/idea/creating-local-server-configuration.html)
+- use the [intellij local server](https://www.jetbrains.com/help/idea/creating-local-server-configuration.html) or
+- [lighttpd server](https://redmine.lighttpd.net/projects/lighttpd/wiki)
 
 ## build code
 
@@ -80,3 +81,33 @@ of JavaScript, instead of previous idiosyncratic solutions such as CommonJS and 
 ES modules let you freely and seamlessly combine the most useful individual functions
 from your favorite libraries. This will eventually be possible natively everywhere,
 but Rollup lets you do it today.
+
+
+
+## lighttpd webserver
+
+    sudo apt-get install lighttpd # install
+    lighttpd -tt -f ./lighttpd.conf # lint
+    lighttpd -D -f lighttpd.conf # start server
+
+
+**lighttpd.conf**
+
+    #server.document-root = "/var/www/servers/www.mab.ch"
+    server.document-root       = "/home/mab/development/source/calendario/js-client-iteration-5"
+
+    server.port = 3000
+    server.error-handler-404 = "/404.html"
+
+    mimetype.assign = (
+      ".html" => "text/html",
+      ".css"  => "text/css",
+      ".js"   => "text/javascript",
+      ".png"  => "image/png",
+      ".jpg"  => "image/jpeg",
+      ".jpeg" => "image/jpeg",
+      ".svg"  => "image/svg+xml"
+    )
+
+    static-file.exclude-extensions = ( ".fcgi", ".cgi", ".php", ".rb", "~", ".inc" )
+    index-file.names = ( "index.html" )
