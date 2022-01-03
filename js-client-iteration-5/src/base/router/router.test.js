@@ -7,7 +7,6 @@ const suite = Suite("router");
 const getContainerChildsById = containerId => document.querySelector(`#${containerId}`).children;
 
 suite.add("spa routing ", assert => {
-    // setup
     const containerId = 'router-test';
 
     const fragment = dom(`
@@ -22,8 +21,6 @@ suite.add("spa routing ", assert => {
     body.appendChild(fragment);
 
     let [home, approval, content] = getContainerChildsById(containerId);
-
-    assert.is(content.innerHTML, 'routing content');
 
     const HomeView = (_, rootElement) => {
         rootElement.innerHTML = ""; // clear
@@ -42,15 +39,22 @@ suite.add("spa routing ", assert => {
     home.addEventListener("click", event => push(event))
     approval.addEventListener("click", event => push(event))
 
-    home.click();
+    assert.is(content.innerHTML, 'routing content');
+    assert.is(location.pathname, window.serverDocumentRoot);
+
+    home.click(); // route to home
     assert.is(content.innerHTML, 'content-home');
-    approval.click();
+    assert.is(location.pathname, window.serverDocumentRoot + '/home');
+
+    approval.click(); // route to approval
     assert.is(content.innerHTML, 'content-approval');
+    assert.is(location.pathname, window.serverDocumentRoot + '/approval');
 
     // clean up DOM and reset URL
     body.removeChild(document.querySelector(`#${containerId}`));
     const absolutePath = window.serverDocumentRoot
     window.history.pushState({id: absolutePath}, `${absolutePath}`, `${absolutePath}`);
+    document.title = 'Vakansie';
 });
 
 suite.run();
