@@ -19,8 +19,18 @@
 
 <p id="grossTotal"></p>
 
+<script>
+    // keep page specifics in the page
+    // !!! This config is only needed for routing !!!
+    // Define absolute path when serving the app on subdirectories.
+    // The ../*/test.html file is our test root. There is no similar functionality like invoke index.html in directory.
+    window.serverDocumentRoot = '/vakansie/js-client-iteration-5/test.html';
+</script>
+
+
 <!--no inline function to please FF-->
 <script src="src/base/test/asyncStarter.js" type="module"></script>
+
 
 <script>
     // Since the bundle is loaded before this code, we can refer to the "total" in the global namespace

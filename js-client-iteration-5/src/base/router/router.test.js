@@ -6,17 +6,14 @@ const suite = Suite("router");
 
 const getContainerChildsById = containerId => document.querySelector(`#${containerId}`).children;
 
-suite.add("setup test", assert => {
+suite.add("spa routing ", assert => {
     // setup
     const containerId = 'router-test';
 
-    // const path = postfix => '/vakansie/js-client-iteration-5/test.html' + postfix;
-    const path = postfix => postfix;
-
     const fragment = dom(`
         <div id="${containerId}">
-            <a id="${path('/home')}">Home</a>
-            <a id="${path('/approval')}">Approval</a>
+            <a id="/home">Home</a>
+            <a id="/approval">Approval</a>
             <div id="app">routing content</div>
         </div>`
     )
@@ -50,8 +47,10 @@ suite.add("setup test", assert => {
     approval.click();
     assert.is(content.innerHTML, 'content-approval');
 
-
-    body.removeChild(document.querySelector(`#${containerId}`)); // clean up DOM
+    // clean up DOM and reset URL
+    body.removeChild(document.querySelector(`#${containerId}`));
+    const absolutePath = window.serverDocumentRoot
+    window.history.pushState({id: absolutePath}, `${absolutePath}`, `${absolutePath}`);
 });
 
 suite.run();

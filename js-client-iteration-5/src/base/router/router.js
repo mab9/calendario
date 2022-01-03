@@ -43,14 +43,16 @@ export {router};
 
 const push = event => {
     let path = event.target.id; // Resolve route
-    document.title = 'Vakansie ' + path.split('/')[path.split('/').length - 1]; // update title in window's tab
+    document.title = 'Vakansie ' + path.split('/')[path.split('/').length - 1]; // Update title in window's tab
     router.route(path);  // Load content for this tab/page
-    window.history.pushState({id: path}, `${path}`, `${path}`); // Push state change to the address bar
+
+    const absolutePath = window.serverDocumentRoot + path
+    window.history.pushState({id: absolutePath}, `${absolutePath}`, `${absolutePath}`); // Push state change to the address bar
 }
 
 // Listen for PopStateEvent (Back or Forward buttons are clicked)
 window.addEventListener("popstate", event => {
-    if (event.origin !== "http://localhost:60000") {
+    if (event.origin !== "http://localhost:60000") { // todo why is this guard needed?
         console.info('not equal to localhost', event)
         return;
     } // CORS guard
