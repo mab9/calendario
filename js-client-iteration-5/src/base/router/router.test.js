@@ -51,6 +51,9 @@ suite.add("setup test", assert => {
     assert.is(content.innerHTML, 'content-home');
     approval.click();
     assert.is(content.innerHTML, 'content-approval');
+
+
+    body.removeChild(document.querySelector(`#${containerId}`)); // clean up DOM
 });
 
 suite.run();
