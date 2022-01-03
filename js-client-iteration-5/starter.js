@@ -33,9 +33,9 @@ const start = (appRootIdParam) => {
 
     const mainContainer = child(fragment);
 
-    const eventCtrl = EventController();
+    const eventController = EventController();
     const content = mainContainer.querySelector("#content");
-    EventView(eventCtrl, content);
+    EventView(eventController, content);
 
     // replace functionality to the corresponding ctrl into an init method or something similar
     ServiceController().vakansieService.loadeEvents(events => events.forEach(item => eventController.processNewModel(item)));
