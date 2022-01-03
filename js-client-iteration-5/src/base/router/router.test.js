@@ -28,20 +28,18 @@ suite.add("setup test", assert => {
 
     assert.is(content.innerHTML, 'routing content');
 
-    const HomeView = (homectrl, rootElement) => {
+    const HomeView = (_, rootElement) => {
         rootElement.innerHTML = ""; // clear
         rootElement.appendChild(dom('content-home'))
     }
-    const HomeCtrl = () => ''; // mock, do nothing
 
-    const ApprovalView = (homectrl, rootElement) => {
+    const ApprovalView = (_, rootElement) => {
         rootElement.innerHTML = ""; // clear
         rootElement.appendChild(dom('content-approval'))
     }
-    const ApprovalCtrl = () => ''; // mock, do nothing
 
-    router.register('/home', [HomeView, HomeCtrl, content])
-    router.register('/approval', [ApprovalView, ApprovalCtrl, content])
+    router.register('/home', [HomeView, () => '', content])
+    router.register('/approval', [ApprovalView, () => '', content])
 
     // make this part generic - data-route='/about' replace this code to dom?
     home.addEventListener("click", event => push(event))

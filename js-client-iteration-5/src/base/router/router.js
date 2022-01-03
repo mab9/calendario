@@ -5,28 +5,26 @@ import {EventView} from '../../event/event.view.js';
 
 const Router = () => {
     let routes = {
-        default: ['/', EventView, EventController]
-    };
-
-    const register = (path, routeArgs) => {
-        console.info('register route', path);
-        routes[path] = routeArgs;
+        default: ['/', EventView, EventController] // todo supply element
     }
 
+    const register = (path, routeDetails) => routes[path] = routeDetails;
 
-    // navigate / route ...
     const route = path => {
         try {
-            console.info("resolve route from path", path)
-            return routes[path];
+            navigate(routes[path])
         } catch (e) {
-            return routes['default'];
-
+            console.info('No route configured for given path:', path)
+            navigate(routes['default']);
         }
     }
 
-    const navigate = () => {
-
+    const navigate = routeDetails => {
+            const view = routeDetails[0];
+            const ctrl = routeDetails[1];
+            const element = routeDetails[2];
+            console.info('navigate to', view, ctrl, element);
+            view(ctrl, element); // route
     }
 
     /**
@@ -43,29 +41,22 @@ const router = Router(); // singleton, init with ES6 module to avoid two instanc
 export {router};
 
 
-function push(event) {
-    let id = event.target.id; // resolve route
-    document.title = 'Vakansie ' + id.split('/')[id.split('/').length - 1]; // update title in window's tab
-
-    // Load content for this tab/page
-    const route = router.route(id);
-    route[0](route[1],route[2])
-
-    // push state change to the address bar
-    window.history.pushState({id}, `${id}`, `${id}`);
+const push = event => {
+    let path = event.target.id; // Resolve route
+    document.title = 'Vakansie ' + path.split('/')[path.split('/').length - 1]; // update title in window's tab
+    router.route(path);  // Load content for this tab/page
+    window.history.pushState({id: path}, `${path}`, `${path}`); // Push state change to the address bar
 }
 
-// Listen for PopStateEvent
-// (Back or Forward buttons are clicked)
+// Listen for PopStateEvent (Back or Forward buttons are clicked)
 window.addEventListener("popstate", event => {
     if (event.origin !== "http://localhost:60000") {
         console.info('not equal to localhost', event)
         return;
     } // CORS guard
 
-    // load content for this tab/page
-    const route = router.route(id);
-    route[0](route[1],route[2])
+    let path = event.target.id; // resolve route
+    router.route(path); // load content for this tab/page
 });
 
 export {push}
