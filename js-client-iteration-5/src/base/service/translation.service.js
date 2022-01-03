@@ -113,5 +113,5 @@ const TranslationService = () => {
     })
 }
 
-const translationService = TranslationService(); // singleton, init in module to avoid two instances. See export at the top of the file
+const translationService = TranslationService(); // singleton, init with ES6 module to avoid two instances. See export at the top of the file
 export {translationService}
