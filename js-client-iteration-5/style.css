@@ -44,7 +44,7 @@ body {
     margin: 0;
 }
 
-#content {
+#app {
     margin: 3em auto 1em auto;
     max-width: 45em;
 }
@@ -68,6 +68,16 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+}
+
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: var(--color-primary-font-dark) ;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
 }
 
 .topnav-languages {

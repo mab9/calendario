@@ -47,7 +47,12 @@ const TranslationService = () => {
         const lang = valueOf(currentLang);
         isLangLoaded.setValue(false);
 
-        fetch("src/i18n/" + lang + ".json")
+        // Fetching resources from a relative path. By activating the router,
+        // fetching from a relative path will break the relative url.
+        const rel = window.serverDocumentRoot && window.serverDocumentRoot.length > 1 ? window.serverDocumentRoot + '/' : '';
+        const url = rel + 'src/i18n/' + lang + '.json';
+
+        fetch(url)
         .then(response => response.json())
         .then(json => {
             langTranslations = json;

@@ -1,11 +1,10 @@
 import {Attribute, onValueChange, setValueOf, valueOf,} from '../base/presentationModel/presentationModel.js';
-import {eventListItemProjector, eventOverviewProjector} from './event.projector.js';
 import {ServiceController} from '../service/service.controller.js';
 import {ListController} from '../base/controller/controller.js';
 import {Event} from './event.model.js';
 import "../base/utils/dates.js" // we import no symbols as they are set on the respective prototypes
 
-export {EventController, EventView, OverView};
+export {EventController};
 
 const EventController = () => {
 
@@ -67,26 +66,3 @@ const EventController = () => {
         processNewModel: processNewModel,
     }
 }
-
-/**
- * @param eventController
- * @param selectionController
- * @param rootElement
- * @constructor
- */
-const OverView = (eventController, selectionController, rootElement) => {
-    eventOverviewProjector(eventController, rootElement);
-}
-
-/**
- * @param eventController
- * @param selectionController
- * @param rootElement
- * @constructor
- */
-const EventView = (eventController, selectionController, rootElement) => {
-    const render = model => eventListItemProjector(eventController, selectionController, rootElement, model);
-
-    // binding
-    eventController.onItemAdd(render);
-};

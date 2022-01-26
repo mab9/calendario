@@ -125,6 +125,21 @@ Visit [build-info.md](./js-client-iteration-4/build-info.md) for more informatio
 
 - implement menu and router components. see vakansie impl.
 
+#### Router
+
+Do we need a router? No!
+To me, the router is a nice to have thing. The feature: A user is able to 
+browse directly to a desired route. Example: https://wwww.vakansie.ch/event
+
+**How to integrate the router**
+
+1. supply a `<div id="app"></div>` element where we will route content into.
+2. define routes - register routes
+3. Activate the router by importing the defined routes via ES6 modules into your main JS. 
+
+
+Register routes into a new file. 
+
 
 ### x iteration toaster, error handling
 

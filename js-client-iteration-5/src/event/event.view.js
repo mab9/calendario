@@ -2,7 +2,6 @@ import {eventListItemProjector, eventOverviewProjector} from './event.projector.
 import {SelectionController} from '../base/controller/controller.js';
 import "../base/utils/dates.js"
 import {dom} from '../base/utils/dom.js';
-import {ServiceController} from '../service/service.controller.js';
 
 export {EventView};
 

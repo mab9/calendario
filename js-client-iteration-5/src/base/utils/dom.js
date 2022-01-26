@@ -1,6 +1,9 @@
 import {i18n} from "../service/translation.service.js";
+import {ListController} from '../controller/controller.js';
 
-export {dom, child}
+export {dom, child, externalBindings}
+
+const externalBindings = ListController(); // todo - in which order are those bindings applied?
 
 /**
  * The difference of a document fragment to an element disappears when it is added to the DOM.
@@ -29,6 +32,13 @@ const dom = innerString => {
 
         // this might set many translations without discharging old ones
         i18n(key)(node);
+    })
+
+    // todo describe external binding function and rework i18n translations from above, as well all dom tests ;-p
+    // No dom function pollution with dependencies...
+    // Beside that, we don't load modules that are not in use.
+    externalBindings.getAll().forEach(observable => {
+        observable(frag) // execute external function
     })
 
     return frag;
