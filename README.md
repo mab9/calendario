@@ -121,11 +121,7 @@ Create helper functions to simplify code and safe time...
 
 Visit [build-info.md](./js-client-iteration-4/build-info.md) for more information.
 
-### 5 iteration menu and router, bus (backbone - js native)
-
-- implement menu and router components. see vakansie impl.
-
-#### Router
+### 5 iteration - router
 
 Do we need a router? No!
 To me, the router is a nice to have thing. The feature: A user is able to 
@@ -133,15 +129,17 @@ browse directly to a desired route. Example: https://wwww.vakansie.ch/event
 
 **How to integrate the router**
 
-1. supply a `<div id="app"></div>` element where we will route content into.
-2. define routes - register routes
-3. Activate the router by importing the defined routes via ES6 modules into your main JS. 
+1. supply a [\<div id="app"\>\</div\>](./js-client-iteration-5/starter.js) element where we will route content into.
+2. define routes / register routes [example](./js-client-iteration-5/src/routes.js)
+3. Activate the router by [import './src/routes.js'](./js-client-iteration-5/starter.js) the defined routes via ES6 modules into your main JS. 
+4. Define the [404.html](./js-client-iteration-5/404.html) bage nöt found
+5. Define the fallback route for the webserver [(server.error-handler-404)](./js-client-iteration-5/lighttpd.conf) - fallback to index.html to be able to check existing / available routes. Index will take care of routing to 404...
+6. Define routes via data-router-link attribute. Example [\<a class="menu-item" data-router-link="/event"\>](./js-client-iteration-5/starter.js)
+7. Apply the init route resolver with the first route [router.resolveInitRoute();](./js-client-iteration-5/starter.js)
 
+### x iteration - menu  bus (backbone - js native)
 
-Register routes into a new file. 
-
-
-### x iteration toaster, error handling
+### x iteration - toaster, error handling
 
 - toaster
 - remote client error handling
