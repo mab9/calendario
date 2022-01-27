@@ -6,22 +6,23 @@
     mkdir -p ./build && cp -R ./ ./build 2> /dev/null
     rm -r ./build/build # remove recursive copied directorie
 
-**Prepare config and code for prod**
+**Prepare config and code to serve the code on the desired env**
 - config ./build/config.js file
 - update ./build/index.html server values
-- bundle js code: `rollup -o ./build/starter.bundle.js -f es -w . ./build/starter.js`
-- minify code: [toptal minifier](https://www.toptal.com/developers/javascript-minifier)
+- update ./build/lighttpd.conf server.document-root
+- (skipped in script - no bash command to minify code) minify code: [toptal minifier](https://www.toptal.com/developers/javascript-minifier)
 
-**Refer to bundle.minified.js and remove obsolete files**
+**Bundle code, refer to bundle.js and remove obsolete files**
 
-    sed -i -e 's/starter.js/starter.bundle.minified.js/g' ./build/index.html
-    find ./build -name "*.js" ! -name "*.bundle.minified.js" -type f -delete # remove bundled js code
+    rollup -o ./build/starter.bundle.js -f es -w . ./build/starter.js
+    #sed -i -e 's/starter.js/starter.bundle.minified.js/g' ./build/index.html
+    sed -i -e 's/starter.js/starter.bundle.js/g' ./build/index.html
+    #find ./build -name "*.js" ! -name "*.bundle.minified.js" -type f -delete # remove bundled js code
+    find ./build -name "*.js" ! -name "*.bundle.js" -type f -delete # remove bundled js code
     rm ./build/.gitignore ./build/.editorconfig ./build/test.html ./build/*.md # remove unwanted files
     find ./build -depth -type d -empty -delete  # remove empty directories
 
-**Start serving** `npx http-server -c-1`
-
-**We usually don't minify code for local and dev environments.**
+**Start serving** `lighttpd -D -f ./build/lighttpd.conf`
 
 ## running code
 For running the code that is build on the ES6 module feature you either
@@ -97,7 +98,7 @@ but Rollup lets you do it today.
     server.document-root       = "/home/mab/development/source/calendario/js-client-iteration-5"
 
     server.port = 3000
-    server.error-handler-404 = "/404.html"
+    server.error-handler-404 = "/index.html"
 
     mimetype.assign = (
       ".html" => "text/html",
