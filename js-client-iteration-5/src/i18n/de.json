@@ -1,6 +1,9 @@
 {
     "test.dom.title": "Donatello",
 
+    "menu.entry.event"    : "Erfassung",
+    "menu.entry.approval" : "Freigabe",
+
     "view.event.from"  : "Von",
     "view.event.to"    : "Bis",
     "view.event.state" : "Status",

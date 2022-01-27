@@ -5,6 +5,7 @@ import {setValueOf} from './src/base/presentationModel/presentationModel.js';
 import {config} from './config.js';
 import './src/routes.js'
 import {router} from './src/base/router/router.js';
+import {menu} from './src/base/menu/menu.js';
 
 /**
  * @param {string} appRootIdParam we don't reuse the global name
@@ -23,8 +24,16 @@ const start = (appRootIdParam, route = '/event') => {
             <NAV class="topnav">
                 <DIV class="topnav-header"></DIV>
                 <A>Vakansie</A>
-                <A class="menu-item" data-router-link="/event">Event</A>
-                <A class="menu-item" data-router-link="/approval">Approval</A>
+
+                ` +
+
+                    // <A class="menu-item" data-router-link="/event">Event</A>
+                    // <A class="menu-item" data-router-link="/approval">Approval</A>
+                    menu.getVisibleEntries().map(entry => {
+                        return `<A class="menu-item"  data-menu-id="${entry.id}" data-router-link="${entry.path}" data-i18n="${entry.title}"></a>`
+                    }).join('')
+
+                + `
 
                 <div class="topnav-languages"></div>
             </NAV>

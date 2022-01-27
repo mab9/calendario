@@ -7,6 +7,8 @@ const Router = () => {
 
     let routes = {}
 
+    const getRoutes = () => Object.keys(routes)
+
     const register = (path, routeDetails) => routes[path] = routeDetails;
 
     const route = (path, doUpdateAdressBar = false) => {
@@ -34,6 +36,7 @@ const Router = () => {
             container.removeChild(container.firstChild);
         }
 
+        // todo think about memory leaks caused from dom(...) instant translation
         view(ctrl(), container); // update content
     }
 
@@ -69,6 +72,7 @@ const Router = () => {
         register: register,
         route: route,
         resolveInitRoute: resolveInitRoute,
+        routes : getRoutes
     }
 }
 

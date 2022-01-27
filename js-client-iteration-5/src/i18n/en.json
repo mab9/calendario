@@ -1,6 +1,9 @@
 {
     "test.dom.title": "Donatello",
 
+    "menu.entry.event"    : "Event",
+    "menu.entry.approval" : "Approval",
+
     "view.event.from"  : "From",
     "view.event.to"    : "To",
     "view.event.state" : "State",
