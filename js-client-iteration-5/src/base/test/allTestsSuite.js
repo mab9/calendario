@@ -12,6 +12,7 @@ import '../utils/rock.test.js'
 import '../observable/observable.test.js'
 import '../service/translation.service.test.js'
 import '../router/router.test.js'
+import '../menu/menu.test.js'
 
 
 /////////////////////////////////

@@ -7,6 +7,9 @@ const suite = Suite("router");
 
 const getContainerChildsById = containerId => document.querySelector(`#${containerId}`).children;
 
+// temporary removal of router div element, on which other tests may depend on, during router tests.
+document.querySelector(`#app`).remove();
+
 suite.add("spa routing ", assert => {
     const containerId = 'router-test';
 
@@ -91,4 +94,9 @@ const assertFaqSettingsAndDoDomCleanUp = assert => containerId => {
     window.history.pushState({id: absolutePath}, `${absolutePath}`, `${absolutePath}`);
     document.title = 'Vakansie';
 }
+
 suite.run();
+
+// Add the div element back, on which other tests may depend on...
+const fragment = dom(`<div id="app"></div>`);
+document.querySelector('body').append(fragment);

@@ -1,5 +1,6 @@
 import {Observable} from "../observable/observable.js";
 import {config} from "../../../config.js";
+import {router} from '../router/router.js';
 
 // See export at the bottom of the file!
 
@@ -34,7 +35,7 @@ const Menu = () => {
         selectedEntry.setValue(newEntry);
     }
 
-    // todo handle listener clean up when the view changes. Especially the instant translation memory leaks...
+    // todo handle listener clean up on view changes. Especially the instant translation memory leaks...
     // Update the main content view
     selectedEntry.onChange(entry => {
         router.route(entry.path, true)
@@ -48,7 +49,7 @@ const Menu = () => {
         getEntries: () => entries.data,
         getVisibleEntries: () => entries.data.filter(item => item.visible),
         getSelectedEntry: selectedEntry.getValue,
-        setSelectedEntry: setSelectedEntry,
+        setSelectedEntry: setSelectedEntry, // todo now there are two navigation functions (data-router-link and set selected entry)
         onSelectedEntryChange: selectedEntry.onChange,
     }
 }
