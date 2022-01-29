@@ -12,10 +12,11 @@ const Router = () => {
     const register = (path, routeDetails) => routes[path] = routeDetails;
 
     const route = (path, doUpdateAdressBar = false) => {
-        if (routeExist(path)) {
-            goto(path, doUpdateAdressBar)
+        const targetRoute = resolveRoute(path); // intellij server serves from subdirectories...
+        if (routeExist(targetRoute)) {
+            goto(targetRoute, doUpdateAdressBar)
         } else {
-            console.error('No route configured for given path:', path);
+            console.error('No route configured for given path:', targetRoute);
             goto(DEFAULT_ROUTE, doUpdateAdressBar);
         }
     }
@@ -49,10 +50,18 @@ const Router = () => {
 
     const resolveAbsolutePath = path => window.serverDocumentRoot === '/' ? path : window.serverDocumentRoot + path;
 
-    const routeExist = path => routes[path] ? true : false;
+    // intellij server serves from subdirectories...
+    const resolveRoute = path => {
+        const noIndex = path.endsWith('index.html') ? path.replace('index.html', '') : path;
+        return window.serverDocumentRoot === '/' ? noIndex : noIndex.replace(window.serverDocumentRoot, '');
+    }
+
+    const routeExist = path => {
+        return routes[path] ? true : false;
+    }
 
     const resolveInitRoute = () => {
-        const path = window.location.pathname;
+        const path = resolveRoute(window.location.pathname);
         if (routeExist(path)) {
             // Replace state, to be able to resolve the very first requested path, on clicking back button all the way back, to the first entry.
             const absolutePath = resolveAbsolutePath(path);
@@ -60,7 +69,7 @@ const Router = () => {
             return path;
         } else {
            // No route matches the requested url path. Show 404 page.
-           window.location.href = window.location.origin + '/404.html?notFound=' + window.location.pathname;
+          // window.location.href = window.location.origin + '/404.html?notFound=' + window.location.pathname;
         }
     }
 
