@@ -1,6 +1,7 @@
 import {Observable} from "../observable/observable.js";
 import {config} from "../../../config.js";
 import {router} from '../router/router.js';
+import {routes} from '../../routes.js';
 
 // See export at the bottom of the file!
 
@@ -14,14 +15,14 @@ const Menu = () => {
                             {
                               "id":      "0",
                               "title":   "menu.entry.event",
-                              "path" :   "/event",
+                              "path" :   "${routes.EVENT}",
                               "roles":   [],
                               "visible": true
                             },
                             {
                               "id":      "1",
                               "title":   "menu.entry.approval",
-                              "path" :   "/approval",
+                              "path" :   "${routes.APPROVAL}",
                               "roles":   ["${roles.TENANT}","${roles.SUPERUSER}"],
                               "visible": true
                             }
