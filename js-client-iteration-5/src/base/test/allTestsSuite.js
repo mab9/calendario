@@ -14,6 +14,8 @@ import '../service/translation.service.test.js'
 import '../router/router.test.js'
 import '../menu/menu.test.js'
 
+// We don't want to mess up the URL and the HTML body element because of router tests.
+import '../router/routerReset.test.js'
 
 /////////////////////////////////
 // not base code
