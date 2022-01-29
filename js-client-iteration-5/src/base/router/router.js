@@ -73,8 +73,8 @@ const Router = () => {
             window.history.replaceState({id: absolutePath}, '', absolutePath); // state / data, title, url.
             return path;
         } else {
-           // No route matches the requested url path. Show 404 page.
-          // window.location.href = window.location.origin + '/404.html?notFound=' + window.location.pathname;
+            // No route matches the requested url path. Show 404 page.
+            window.location.href = window.location.origin + '/404.html?notFound=' + window.location.pathname;
         }
     }
 
@@ -86,10 +86,9 @@ const Router = () => {
         register: register,
         route: route,
         resolveInitRoute: resolveInitRoute,
-        routes : getRoutes
+        routes: getRoutes
     }
 }
-
 
 // replace this code to router object?
 // Bind push state to dom function.
