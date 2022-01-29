@@ -121,7 +121,7 @@ Create helper functions to simplify code and safe time...
 
 Visit [build-info.md](./js-client-iteration-4/build-info.md) for more information.
 
-### 5 iteration - router
+### 5 iteration - router and simple menu
 
 Do we need a router? No!
 To me, the router is a nice to have thing. The feature: A user is able to 
@@ -137,15 +137,13 @@ browse directly to a desired route. Example: https://wwww.vakansie.ch/event
 6. Define routes via data-router-link attribute. Example [\<a class="menu-item" data-router-link="/event"\>](./js-client-iteration-5/starter.js)
 7. Apply the init route resolver with the first route [router.resolveInitRoute();](./js-client-iteration-5/starter.js)
 
-### x iteration - menu  bus (backbone - js native)
+### x iteration - bus (backbone - js native)
 
-### x iteration - toaster, error handling
+### x iteration - error handling
 
-- toaster
-- remote client error handling
-- 404 page
+- error handling, rest, toaster?
 
-### x iteration - molds - selection molds
+### x iteration - model world - selection molds
 
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
 
