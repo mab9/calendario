@@ -15,6 +15,8 @@ const EventController = () => {
 
     const eventListCtrl = ListController();  // observable array of events, this state is private
 
+    const postConstructor = () => eventService.loadeEvents(events => events.forEach(item => processNewModel(item)));
+
     const createItem = () => {
         const newItem = Event();
 
@@ -63,6 +65,6 @@ const EventController = () => {
         createItem: createItem,
         count: eventListCtrl.size,
         getDaysLeft: () => daysLeft,
-        processNewModel: processNewModel,
+        postConstructor : postConstructor,
     }
 }

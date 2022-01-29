@@ -26,13 +26,11 @@ const start = (appRootIdParam, route = '/event') => {
                 <A>Vakansie</A>
 
                 ` +
-
                     // <A class="menu-item" data-router-link="/event">Event</A>
                     // <A class="menu-item" data-router-link="/approval">Approval</A>
                     menu.getVisibleEntries().map(entry => {
                         return `<A class="menu-item"  data-menu-id="${entry.id}" data-router-link="${entry.path}" data-i18n="${entry.title}"></a>`
                     }).join('')
-
                 + `
 
                 <div class="topnav-languages"></div>
@@ -42,14 +40,6 @@ const start = (appRootIdParam, route = '/event') => {
     );
 
     const mainContainer = child(fragment);
-
-    // Todo replace init loading
-    //const eventController = EventController();
-    //const content = mainContainer.querySelector("#app");
-    //EventView(eventController, content);
-//
-    //// replace functionality to the corresponding ctrl into an init method or something similar
-    //ServiceController().vakansieService.loadeEvents(events => events.forEach(item => eventController.processNewModel(item)));
 
     // translations
     const languages = mainContainer.querySelector(".topnav-languages");

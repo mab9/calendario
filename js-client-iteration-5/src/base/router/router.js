@@ -38,7 +38,12 @@ const Router = () => {
         }
 
         // todo think about memory leaks caused from dom(...) instant translation
-        view(ctrl(), container); // update content
+        const initializedCtrl = ctrl();
+        view(initializedCtrl, container); // update content
+
+        if (Object.keys(initializedCtrl).includes('postConstructor')) {
+            initializedCtrl.postConstructor();
+        }
     }
 
     const updateAddressBar = (path, doUpdateAddressBar) => {
