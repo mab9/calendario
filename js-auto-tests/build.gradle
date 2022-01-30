@@ -1,0 +1,23 @@
+plugins {
+    id 'io.spring.dependency-management'
+    id 'java'
+}
+group 'ch.mab.vakansie'
+version '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.1'
+}
+
+test {
+    useJUnitPlatform()
+}

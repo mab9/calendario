@@ -1,3 +1,4 @@
 rootProject.name = 'vakansie'
 include 'client'
 include 'core'
+include 'js-auto-tests'
