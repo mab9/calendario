@@ -16,6 +16,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.1.1'
+
+    // testcontainers to be able to build and run a docker images
+    testImplementation "org.testcontainers:testcontainers:1.16.3"
+    testImplementation "org.testcontainers:junit-jupiter:1.16.3"
 }
 
 test {
