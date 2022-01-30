@@ -1,0 +1,132 @@
+/*@import "src/assets/fonts/FontAwesome/css/fontawesome.min.css";*/
+/*@import "src/assets/fonts/FontAwesome/css/solid.min.css";*/
+
+@import "src/event/event.projector.css";
+
+
+:root {
+    /* Colors wood / natural colors https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=8D6E63&secondary.color=37464f&primary.text.color=ffffff&secondary.text.color=ffffff */
+
+    --color-primary-font: #ffffff;
+    --color-primary-font-light: #ffffff;
+    --color-primary-font-dark: #000000;
+    --color-primary-background: #8c6d62;
+    --color-primary-background-light: #be9c91;
+    --color-primary-background-dark: #5e4238;
+
+    --color-secondary-font: #ffffff;
+    --color-secondary-font-light: #ffffff;
+    --color-secondary-font-dark: #ffffff;
+    --color-secondary-background: #37464f;
+    --color-secondary-background-light: #62717b;
+    --color-secondary-background-dark: #101f27;
+
+    --color-background: #E1E2E1;
+    --color-background-light: #F5F5F6;
+    --color-background-dark: #c9c9c9;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+    color: var(--color-primary-font);
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    margin: 3em auto 1em auto;
+    max-width: 45em;
+}
+
+
+/* TOP NAV */
+.topnav-header {
+    height: 1rem;
+    background-color: VAR(--color-primary-background-dark);
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: VAR(--color-primary-background);
+}
+
+.topnav a {
+    float: left;
+    color: VAR(--color-primary-font);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    color: var(--color-primary-font-dark) ;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
+}
+
+.topnav-languages {
+    float: right;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.topnav-languages > a:hover {
+    color: var(--color-primary-font-dark) ;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
+}
+
+.plus-btn {
+    background-color: var(--color-secondary-background);
+    color: var(--color-secondary-font);
+
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+
+    border-radius: 50%;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.plus-btn:hover {
+    background-color: var(--color-secondary-background-dark);
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+}
+
+@media screen and (max-width: 992px) {
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 576px) {
+    .button {
+        font-size: 0.8em;
+    }
+}

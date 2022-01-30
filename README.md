@@ -22,7 +22,7 @@ To install vakansie, follow these steps:
 
 ``` 
 git clone https://github.com/mab9/calendario.git
-./vakansie/js-client-iteration-5/index.html # open in your favorite browser
+./vakansie/js-client-iteration-6/index.html # open in your favorite browser
 ```
 
 **Only the frontend part of the web app is available at the moment.** 
@@ -137,6 +137,12 @@ browse directly to a desired route. Example: https://wwww.vakansie.ch/event
 6. Define routes via data-router-link attribute. Example [\<a class="menu-item" data-router-link="/event"\>](./js-client-iteration-5/starter.js)
 7. Apply the init route resolver with the first route [router.resolveInitRoute();](./js-client-iteration-5/starter.js)
 
+### 6 iteration - auto testing
+
+Automated frontend test execution.
+Selenium / Web Driver together with test containers. 
+
+
 ### x iteration - bus (backbone - js native)
 
 ### x iteration - error handling
@@ -148,10 +154,6 @@ browse directly to a desired route. Example: https://wwww.vakansie.ch/event
 Make use of the selection mold pattern, to be able to synchronize models on the whole application.
 
 Webcl week 14
-
-### x iteration - auto testing
-
-https://code.google.com/archive/p/js-test-driver/
 
 ### x iteration - core js code extraction
 

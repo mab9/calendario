@@ -1,0 +1,24 @@
+{
+    "test.dom.title": "Donatello",
+
+    "view.event.from"  : "Du",
+    "view.event.to"    : "Au",
+    "view.event.state" : "Statut",
+
+    "view.event.year"          : "Année",
+    "view.event.availableDays" : "Journées disponibles",
+    "view.event.events"        : "Vacances prévues",
+
+    "month.jan":  "Janvier",
+    "month.feb":  "Février",
+    "month.mar":  "Mars",
+    "month.apr":  "Avril",
+    "month.mai":  "Mai",
+    "month.jul":  "Juin",
+    "month.jun":  "Juillet",
+    "month.aug":  "Août",
+    "month.sep":  "Septembre",
+    "month.oct":  "Octobre",
+    "month.nov":  "Novembre",
+    "month.dez":  "Décembre"
+}

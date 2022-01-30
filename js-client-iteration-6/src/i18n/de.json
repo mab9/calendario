@@ -1,0 +1,27 @@
+{
+    "test.dom.title": "Donatello",
+
+    "menu.entry.event"    : "Erfassung",
+    "menu.entry.approval" : "Freigabe",
+
+    "view.event.from"  : "Von",
+    "view.event.to"    : "Bis",
+    "view.event.state" : "Status",
+
+    "view.event.year"          : "Jahr",
+    "view.event.availableDays" : "Verfügbare Tage",
+    "view.event.events"        : "Geplante Ferien",
+
+    "month.jan":  "Januar",
+    "month.feb":  "Februar",
+    "month.mar":  "März",
+    "month.apr":  "April",
+    "month.mai":  "Mai",
+    "month.jul":  "Juni",
+    "month.jun":  "Juli",
+    "month.aug":  "August",
+    "month.sep":  "September",
+    "month.oct":  "Oktober",
+    "month.nov":  "November",
+    "month.dez":  "Dezember"
+}
