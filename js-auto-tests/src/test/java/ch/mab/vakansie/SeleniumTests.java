@@ -80,7 +80,7 @@ class SeleniumTests {
         String amountOfSuccessfulTests = total.getText().split(" ")[0];
         assertThat(total.getText(), endsWith("Tests"));
 
-        // there are roughly 140 tests at the moment.
+        // there are roughly 147 tests at the moment.
         assertThat(Integer.parseInt(amountOfSuccessfulTests), greaterThan(147));
     }
 }
