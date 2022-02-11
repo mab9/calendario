@@ -8,5 +8,3 @@ COPY ./ /var/www/localhost/htdocs
 COPY ./lighttpd.conf /etc/lighttpd/lighttpd.conf
 
 CMD ["lighttpd","-D","-f","/etc/lighttpd/lighttpd.conf"]
-
-
