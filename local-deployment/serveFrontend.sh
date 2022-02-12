@@ -18,7 +18,7 @@ cp ./lighttpd.conf ./build/lighttpd.conf
 ## build and start image
 ########################################
 docker build . -t frontend-vak
-docker run -d --name frontend-vak -p 3000:3000 lighttpd
+docker run -d --name frontend-vak -p 3000:3000 frontend-vak
 
 
 ## clean up
